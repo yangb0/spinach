@@ -49,7 +49,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * OSChina：<http://git.oschina.net/1231/spinach>
 * 捐赠支持（支付宝）：yangbo@live.cn
 
-一个人的个人能力再强，也无法战胜一个团队，希望兄弟姐妹的支持，能够贡献出自己的部分代码，参与进来共同完善它(^_^)。
+个人能力有限,希望大神多多指点。
 
 怎么共享我的代码：[手把手教你如何加入到github的开源世界！](http://www.cnblogs.com/wenber/p/3630921.html)
 
