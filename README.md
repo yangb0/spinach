@@ -41,8 +41,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 5. 等待eclipse自动下载jar包
 6. 在数据库中运行  /sql/demo.sql文件创建数据库和表
 7. 修改resource下 resources.properties数据库等配置
-8. 默认在ehcache中运行单机应用,修改resource下 shiro/spring-shiro.xml中配置即可切换为集群应用 
-9. 部署中可能还会碰到很多问题，请加入QQ群：21596283
+8. 部署中可能还会碰到很多问题，请加入QQ群：21596283
 
 ## 交流、反馈
 
