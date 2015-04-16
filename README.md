@@ -1,7 +1,6 @@
 #javaWeb开源框架 spinach
 ## 简介
 spinach是基于多个优秀的开源项目，高度整合封装而成的高效，高性能，强安全性的开源Java EE快速开发平台。
-
 集结最新主流时尚开源技术的面向互联网Web应用的基础开发框架，提供一个J2EE相关主流开源技术架构整合及一些企业应用基础通用功能和组件的设计实现的最佳实践和原型参考。
 
 ## 技术选型
@@ -32,6 +31,15 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * web容器：支持Tomcat 6、Jboss 7、WebLogic 10、WebSphere 8、jetty等,建议使用jetty运行。
 * 数据库支持：目前仅提供Oracle和mysql数据库的支持。
 * 开发环境：Java EE、Eclipse、Maven、Git
+
+## 部署开发环境
+1. 下载 [Eclipse IDE for Java EE Developers](http://eclipse.org/downloads/)
+2. 打开eclpse,导入师说CMS
+3. File -> Import -> Git -> Projects from Git -> Clone URI
+4. 然后在URI输入：http://git.oschina.net/1231/spinach
+5. 等待eclipse自动下载jar包
+6. 在数据库中运行  /sql/demo.sql文件创建数据库和表
+7. 部署中可能还会碰到很多问题，请加入QQ群：21596283
 
 ## 交流、反馈
 
