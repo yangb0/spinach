@@ -32,7 +32,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * 数据库支持：目前仅提供Oracle和mysql数据库的支持。
 * 开发环境：Java EE、Eclipse、Maven、Git
 
-## 部署开发环境
+## 开发部署
 1. 下载 [Eclipse IDE for Java EE Developers](http://eclipse.org/downloads/)
 2. 打开eclpse,导入师说CMS
 3. File -> Import -> Git -> Projects from Git -> Clone URI
