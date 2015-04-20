@@ -3,14 +3,14 @@ package com.yang.spinach.demo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yang.spinach.demo.entity.Account;
 import com.yang.spinach.demo.service.AccountService;
-import com.yang.spinach.frame.utils.XmlUtil;
 
 /**
  * 
@@ -21,7 +21,7 @@ import com.yang.spinach.frame.utils.XmlUtil;
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
-	@Autowired
+	@Resource
 	private AccountService accountService;
 
 	@RequestMapping("get")

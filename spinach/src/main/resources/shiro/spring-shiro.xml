@@ -8,17 +8,10 @@
 
 	<description>Shiro Configuration</description>
 	<!-- cache 单机实现 -->
-<!-- 	<import resource="classpath:shiro/shiro-ehcache.xml" /> -->
+	<import resource="classpath:shiro/shiro-ehcache.xml" />
 	<!-- cache 集群实现 -->
-	<import resource="classpath:shiro/shiro-redis.xml" />
+<!-- 	<import resource="classpath:shiro/shiro-redis.xml" /> -->
 
-	<!-- 凭证匹配器 -->
-	<bean id="credentialsMatcher" class="com.yang.spinach.frame.shiro.RetryLoginMatcher">
-		<constructor-arg ref="cacheManager" />
-		<property name="hashAlgorithmName" value="md5" />
-		<property name="hashIterations" value="2" />
-		<property name="storedCredentialsHexEncoded" value="true" />
-	</bean>
 	<!-- Realm实现 -->
 	<bean id="shiroAccountRealm" class="com.yang.spinach.frame.shiro.ShiroAccountRealm">
 		<property name="credentialsMatcher" ref="credentialsMatcher" />
@@ -32,17 +25,15 @@
 	<!-- 基于Form表单的身份验证过滤器 -->
 	<bean id="formAuthenticationFilter"
 		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-		<!-- <property name="usernameParam" value="username"/> -->
-		<property name="usernameParam" value="accountName" />
+		<property name="usernameParam" value="username"/>
 		<property name="passwordParam" value="password" />
 		<property name="rememberMeParam" value="rememberMe" />
-		<!-- <property name="loginUrl" value="/login"/> -->
-		<property name="loginUrl" value="http://localhost:8010"></property>
+		<property name="loginUrl" value="/"/>
 	</bean>
 
 	<!-- CAS认证过滤器 -->
 	<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
-		<property name="failureUrl" value="/login" />
+		<property name="failureUrl" value="/" />
 	</bean>
 
 	<!-- 定义Shiro安全管理配置 -->
@@ -68,7 +59,7 @@
 		<property name="sessionDAO" ref="sessionDAO" />
 
 		<!-- 会话超时时间，单位：毫秒 -->
-		<property name="globalSessionTimeout" value="3600000" />
+		<property name="globalSessionTimeout" value="120000" />
 
 		<!-- 定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话 -->
 		<property name="sessionValidationInterval" value="120000" />
@@ -82,8 +73,8 @@
 	<!-- 安全认证过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/" />
+		<property name="loginUrl" value="/" />
+		<property name="successUrl" value="/index" />
 		<property name="filters">
 			<map>
 				<entry key="cas" value-ref="casFilter" />
@@ -101,6 +92,7 @@
 			<value>
 				/static/** = anon
 				/account/get = anon
+				/login.json=anon
 				/** = user
 			</value>
 		</constructor-arg>

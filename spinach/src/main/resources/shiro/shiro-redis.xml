@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
@@ -42,17 +41,25 @@
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
 		c:template-ref="redisTemplate" />
 
-	<bean id="redisCached" class="com.yang.spinach.frame.utils.redis.cache.RedisCache">
+	<bean id="cacheImpl" class="com.yang.spinach.frame.utils.redis.cache.RedisCache">
 		<property name="redisTemplate" ref="redisTemplate" />
 		<property name="expire" value="86400" />
 	</bean>
 
 	<bean id="cacheManager" class="com.yang.spinach.frame.shiro.ShiroRedisCacheManager">
-		<property name="cache" ref="redisCached" />
+		<property name="cache" ref="cacheImpl" />
 	</bean>
-	<bean id="sessionDAO"
-		class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
-		<property name="activeSessionsCacheName" value="shiro-activeSessionCache" />
+	<bean id="sessionDAO" class="com.yang.spinach.frame.shiro.ShiroSessionDao">
 		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="expire" value="1800"></property>
+	</bean>
+	
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher" class="com.yang.spinach.frame.shiro.RedisLoginMatcher">
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="hashAlgorithmName" value="md5" />
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="true" />
 	</bean>
 </beans>

@@ -1,5 +1,7 @@
 package com.yang.spinach.demo.service.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ import com.yang.spinach.demo.service.AccountService;
  */
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
-	@Autowired
+	@Resource
 	private AccountDao accountDao;
 
 	@Override

@@ -15,10 +15,19 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	private String name;
 	private ICache cache;
+	private Long expire = 30 * 60L;
 
 	public ShiroRedisCache(String name, ICache cached) {
 		this.name = name;
 		this.cache = cached;
+	}
+
+	public Long getExpire() {
+		return expire;
+	}
+
+	public void setExpire(Long expire) {
+		this.expire = expire;
 	}
 
 	/**
@@ -63,7 +72,7 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
 		logger.debug("根据key从存储 key [" + key + "]");
 		try {
 			cache.updateHashCached(getByteName(), getByteKey(key),
-					SerializeUtil.serialize(value), null);
+					SerializeUtil.serialize(value), expire);
 			return value;
 		} catch (Throwable t) {
 			throw new CacheException(t);

@@ -16,12 +16,12 @@
 	<description>缓存管理 ehcache session单机实现</description>
 	<!-- 缓存管理器 -->
 	<!--ehcache -->
-	<bean id="ehcacheManager"
+	<bean id="cacheImpl"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:shiro/ehcache.xml" />
 	</bean>
 	<bean id="springCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehcacheManager" />
+		<property name="cacheManager" ref="cacheImpl" />
 	</bean>
 
 	<bean id="cacheManager"
@@ -34,4 +34,11 @@
 		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
 	</bean>
 
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher" class="com.yang.spinach.frame.shiro.EhcacheLoginMatcher">
+		 <constructor-arg ref="cacheManager"/>
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="2"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
+	</bean>
 </beans>

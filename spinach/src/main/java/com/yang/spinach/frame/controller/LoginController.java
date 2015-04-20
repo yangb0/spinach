@@ -47,11 +47,9 @@ public class LoginController {
 	 * @return
 	 * @throws Exception
 	 */
-	@ResponseBody
 	@RequestMapping(value = "/")
 	public String index(Model model) throws Exception {
-		System.out.println("index");
-		return "/index";
+		return "/login";
 
 	}
 
@@ -65,7 +63,7 @@ public class LoginController {
 	// }
 
 	@ResponseBody
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/login.json")
 	public Object loginPost(Account account, Model model) throws Exception {
 		// type 类型用来标注会员类型,0表示普通会员
 		ShiroSessionUtils.setAttribute("type", "0");
@@ -136,7 +134,7 @@ public class LoginController {
 	@RequestMapping(value = "/unauth")
 	public String unauth(Model model) throws Exception {
 		if (SecurityUtils.getSubject().isAuthenticated() == false) {
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		return "/unauth";
 
