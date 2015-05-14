@@ -22,6 +22,7 @@
 		<quartz.version>2.2.1</quartz.version>
 		<druid.version>1.0.2</druid.version>
 		<shiro.version>1.2.3</shiro.version>
+		<freemarker.version>2.3.20</freemarker.version>
 	</properties>
 	<dependencies>
 		<!-- 测试依赖jar包 -->
@@ -320,6 +321,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.2.4</version>
 		</dependency>
+		<dependency>
+    	<groupId>org.freemarker</groupId>
+    	<artifactId>freemarker</artifactId>
+    	<version>${freemarker.version}</version>
+    </dependency>
 	</dependencies>
 
 </project>

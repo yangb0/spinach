@@ -25,7 +25,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * CSS框架：Twitter Bootstrap 2.3.1。
 * 客户端验证：JQuery Validation Plugin 1.11。
 * 日期控件： My97DatePicker
-* 模板引擎:FreeMarker
+
 
 3、平台
 * JDK版本:支持jdk1.6及以上
@@ -35,7 +35,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 ## 开发部署
 1. 下载 [Eclipse IDE for Java EE Developers](http://eclipse.org/downloads/)
-2. 打开eclpse,导入师说CMS
+2. 打开eclpse,导入项目
 3. File -> Import -> Git -> Projects from Git -> Clone URI
 4. 然后在URI输入：http://git.oschina.net/1231/spinach
 5. 等待eclipse自动下载jar包
