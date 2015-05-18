@@ -93,6 +93,7 @@
 				/static/** = anon
 				/account/get = anon
 				/login.json=anon
+				/monitoring=anon
 				/** = user
 			</value>
 		</constructor-arg>

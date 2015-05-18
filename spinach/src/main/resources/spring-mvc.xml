@@ -33,16 +33,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 	<!-- 静态资源映射 -->
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
 
-
-	<!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
-	<bean id="defaultViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:order="1">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="contentType" value="text/html" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="requestContextAttribute" value="ctp" />
+		<property name="cache" value="true" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="order" value="0" />
 	</bean>
 
 	<bean id="multipartResolver"
@@ -54,7 +52,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 			<value>10000000</value><!-- 上传文件大小限制为100M -->
 		</property>
 	</bean>
-	<import resource="classpath:spring-mvc-shiro.xml" />
-	<import resource="classpath:freemarker/spring-mvc-freemarker.xml" />
 
 </beans>
