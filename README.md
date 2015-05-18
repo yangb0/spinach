@@ -25,6 +25,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * CSS框架：Twitter Bootstrap 2.3.1。
 * 客户端验证：JQuery Validation Plugin 1.11。
 * 日期控件： My97DatePicker
+* 模板引擎: Freemarker
 
 
 3、平台

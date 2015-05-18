@@ -102,5 +102,5 @@
 
 	<import resource="classpath:shiro/spring-shiro.xml" />
 	<import resource="classpath:spring-mybatis.xml" />
-	<import resource="classpath:freemarker/spring-mvc-freemarker.xml" />
+	<import resource="classpath:freemarker/spring-freemarker.xml" />
 </beans>
