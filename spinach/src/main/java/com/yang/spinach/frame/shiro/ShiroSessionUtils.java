@@ -4,7 +4,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
-import com.yang.spinach.demo.entity.Account;
+import com.yang.spinach.account.entity.Account;
 
 public class ShiroSessionUtils {
 

@@ -1,4 +1,4 @@
-package com.yang.spinach.demo.entity;
+package com.yang.spinach.account.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,26 +11,23 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * 
  * @author <Auto generate>
  * @version 2015-04-15 13:44:42
- * @see com.yang.spinach.demo.entity.Account
+ * @see com.yang.spinach.account.entity.Account
  */
 
 public class Account implements Serializable {
 
-	// columns START
 	/**
 	 * id
 	 */
-	private Integer id;
-	/**
-	 * linked_id
-	 */
-	@JsonIgnore
-	private Integer linkedId;
+	private Long id;
 	/**
 	 * username
 	 */
-	@JsonProperty("userName")
 	private String username;
+	/**
+	 * 手机号码
+	 */
+	private String nickName;
 	/**
 	 * password
 	 */
@@ -45,44 +42,26 @@ public class Account implements Serializable {
 	 */
 	private String email;
 	/**
-	 * 会员类型 0:普通会员 1:药店会员 2:药师 3:管理员
+	 * 用户类型 0:普通会员 1:管理员
 	 */
-	@JsonIgnore
 	private Integer userType;
-	/**
-	 * 角色关联
-	 */
-	@JsonIgnore
-	private String roleIds;
 	/**
 	 * login_time
 	 */
 	private Date loginTime;
 	/**
-	 * 会员是否可用(true:可用 false:不可用)
+	 * 是否可用(0:可用 1:不可用)
 	 */
 	@JsonIgnore
-	private String usable;
+	private Integer disabled;
 
-	// columns END 数据库字段结束
-
-	// get and set
-	public void setId(Integer id) {
+	public void setId(Long id) {
 
 		this.id = id;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
-	}
-
-	public void setLinkedId(Integer linkedId) {
-
-		this.linkedId = linkedId;
-	}
-
-	public Integer getLinkedId() {
-		return this.linkedId;
 	}
 
 	public void setUsername(String username) {
@@ -95,6 +74,18 @@ public class Account implements Serializable {
 
 	public String getUsername() {
 		return this.username;
+	}
+
+	public void setNickName(String nickName) {
+
+		if (StringUtils.isNotBlank(nickName)) {
+			nickName = nickName.trim();
+		}
+		this.nickName = nickName;
+	}
+
+	public String getNickName() {
+		return this.nickName;
 	}
 
 	public void setPassword(String password) {
@@ -142,18 +133,6 @@ public class Account implements Serializable {
 		return this.userType;
 	}
 
-	public void setRoleIds(String roleIds) {
-
-		if (StringUtils.isNotBlank(roleIds)) {
-			roleIds = roleIds.trim();
-		}
-		this.roleIds = roleIds;
-	}
-
-	public String getRoleIds() {
-		return this.roleIds;
-	}
-
 	/*
 	 * public String getlogin_timeString() { return
 	 * DateUtils.convertDate2String(FORMAT_LOGIN_TIME, getlogin_time()); }
@@ -170,29 +149,25 @@ public class Account implements Serializable {
 		return this.loginTime;
 	}
 
-	public void setUsable(String usable) {
+	public void setDisabled(Integer disabled) {
 
-		if (StringUtils.isNotBlank(usable)) {
-			usable = usable.trim();
-		}
-		this.usable = usable;
+		this.disabled = disabled;
 	}
 
-	public String getUsable() {
-		return this.usable;
+	public Integer getDisabled() {
+		return this.disabled;
 	}
 
 	public String toString() {
 		return new StringBuffer().append("id=").append(getId()).append(",")
-				.append("linkedId=").append(getLinkedId()).append(",")
 				.append("username=").append(getUsername()).append(",")
+				.append("nickName=").append(getNickName()).append(",")
 				.append("password=").append(getPassword()).append(",")
 				.append("mobile=").append(getMobile()).append(",")
 				.append("email=").append(getEmail()).append(",")
 				.append("userType=").append(getUserType()).append(",")
-				.append("roleIds=").append(getRoleIds()).append(",")
 				.append("loginTime=").append(getLoginTime()).append(",")
-				.append("usable=").append(getUsable()).append(",").toString();
+				.append("disabled=").append(getDisabled()).append(",")
+				.toString();
 	}
-
 }

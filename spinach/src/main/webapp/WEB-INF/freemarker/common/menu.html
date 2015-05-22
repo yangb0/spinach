@@ -1,0 +1,42 @@
+<div class="page-sidebar nav-collapse collapse">
+	<ul class="page-sidebar-menu" id="myMenu">
+	</ul>
+</div>
+
+<script src="${path }/static/js/template.js" type="text/javascript"></script>
+<script id="menu" type="text/html">
+<li>
+			<div class="sidebar-toggler hidden-phone"></div>
+		</li>
+			{{each data as resource}}
+				{{if (resource.pid==0)}}
+<li class=""><a href="javascript:;"> <i class="{{resource.icon }}"></i>
+				<span class="title">{{resource.name }}</span> <span class="arrow "></span>
+		</a>
+			<ul class="sub-menu">
+					{{each data as c_permission}}	
+						{{if (c_permission.pid==resource.id)}}
+<li><a href="{{c_permission.url }}"><i class="{{c_permission.icon }}"></i>
+						{{c_permission.name}}</a></li>
+						{{/if}}	
+					{{/each}}
+				</ul></li>
+				{{/if}}	
+			{{/each}}
+			</script>
+<script type="text/javascript">
+	$(function() {
+		$.ajax({
+			async : false,
+			type : 'get',
+			url : "${path }/resources/currentResources.json",
+			success : function(data) {
+				var menuData = {
+					data : data
+				};
+				var html = template('menu', menuData);
+				$('#myMenu').html(html);
+			}
+		});
+	});
+</script>

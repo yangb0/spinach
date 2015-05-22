@@ -1,13 +1,13 @@
-package com.yang.spinach.demo.service;
+package com.yang.spinach.account.service;
 
-import com.yang.spinach.demo.entity.Account;
+import com.yang.spinach.account.entity.Account;
 
 
 /**
  * 
  * @author <Auto generate>
  * @version  2015-04-15 13:44:42
- * @see com.yang.spinach.demo.service.Account
+ * @see com.yang.spinach.account.service.Account
  */
 public interface AccountService {
 	/**

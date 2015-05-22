@@ -1,15 +1,15 @@
-package com.yang.spinach.demo.dao;
+package com.yang.spinach.account.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.yang.spinach.demo.entity.Account;
+import com.yang.spinach.account.entity.Account;
 
 /**
  * 
  * @author <Auto generate>
  * @version 2015-04-15 13:44:42
- * @see com.yang.spinach.demo.dao.Account
+ * @see com.yang.spinach.account.dao.Account
  */
 @Repository
 public interface AccountDao {

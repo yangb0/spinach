@@ -9,7 +9,7 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<!-- base-package 如果多个，用“,”分隔 -->
+	<!-- base-package 如果多个，用","分隔 -->
 	<context:component-scan base-package="com.yang.spinach">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -95,7 +95,7 @@
 	<!-- 只对业务逻辑层实施事务 -->
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.yang.spinach.demo.service..*+.*(..))" />
+			expression="execution(* com.yang.spinach.*.service..*+.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>

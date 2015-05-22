@@ -1,19 +1,18 @@
-package com.yang.spinach.demo.service.impl;
+package com.yang.spinach.account.service;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yang.spinach.demo.dao.AccountDao;
-import com.yang.spinach.demo.entity.Account;
-import com.yang.spinach.demo.service.AccountService;
+import com.yang.spinach.account.dao.AccountDao;
+import com.yang.spinach.account.entity.Account;
 
 /**
  * 
  * @author <Auto generate>
  * @version 2015-04-15 13:44:42
- * @see com.yang.spinach.demo.service.impl.Account
+ * @see com.yang.spinach.account.service.impl.Account
  */
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {

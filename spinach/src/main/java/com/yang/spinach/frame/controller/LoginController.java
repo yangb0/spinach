@@ -30,7 +30,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yang.spinach.demo.entity.Account;
+import com.yang.spinach.account.entity.Account;
 import com.yang.spinach.frame.filter.WebContext;
 import com.yang.spinach.frame.shiro.ShiroSessionUtils;
 import com.yang.spinach.frame.utils.CaptchaUtils;
@@ -41,16 +41,27 @@ public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**
-	 * 首页的映射
+	 * 登陆页的映射
 	 * 
 	 * @param model
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/")
-	public String index(Model model) throws Exception {
+	public String login(Model model) throws Exception {
 		return "/login";
+	}
 
+	/**
+	 * 首页
+	 * 
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/index")
+	public String index(Model model) throws Exception {
+		return "/index";
 	}
 
 	// @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -103,6 +114,7 @@ public class LoginController {
 				map.put("data", a);
 				map.put("msg", "登陆成功");
 				return map;
+				// model.addAttribute("user", map);
 			}
 		} catch (UnknownAccountException uae) {
 			map.put("msg", "账号不存在!");

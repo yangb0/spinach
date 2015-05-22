@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.spinach.role.dao.RoleDao">
+	<resultMap id="RoleMap" type="com.yang.spinach.role.entity.Role">
+		
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="role_code" property="roleCode"/>
+		<result column="description" property="description"/>
+		<result column="sort" property="sort"/>
+		<result column="disabled" property="disabled"/>
+	</resultMap>
+
+	<!--保存 -->
+	<insert id="saveRole" parameterType="com.yang.spinach.role.entity.Role" 	useGeneratedKeys="true" 
+		keyProperty="id"
+												 >
+		insert into t_role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="roleCode != null">
+				role_code,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="disabled != null">
+				disabled,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode},
+			</if>
+			<if test="description != null">
+				#{description},
+			</if>
+			<if test="sort != null">
+				#{sort},
+			</if>
+			<if test="disabled != null">
+				#{disabled},
+			</if>
+		</trim>
+	</insert>
+	
+	<!--修改-->
+	<update id="updateRoleById" parameterType="com.yang.spinach.role.entity.Role">
+		update t_role 
+		<set>
+			<if test="id != null">
+				id=#{ id },
+			</if>
+			<if test="name != null">
+				name=#{ name },
+			</if>
+			<if test="roleCode != null">
+				role_code=#{ roleCode },
+			</if>
+			<if test="description != null">
+				description=#{ description },
+			</if>
+			<if test="sort != null">
+				sort=#{ sort },
+			</if>
+			<if test="disabled != null">
+				disabled=#{ disabled },
+			</if>
+		</set>
+		where 
+		id=#{ id }
+	</update>
+	
+	<!--查询-->
+	<select id="selectRoleById" resultMap="RoleMap" parameterType="java.lang.Long">
+		select *
+		from t_role 
+		where
+		id=#{ id }
+	</select>
+</mapper>

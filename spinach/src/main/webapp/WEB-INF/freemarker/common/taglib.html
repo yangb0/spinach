@@ -1,24 +1,24 @@
 <#-- 全局变量 -->
 <#global path="${(ctp.contextPath)!''}">
-<#macro head>
-<#include "/common/head.html" />
+
+<#macro head title>
+<#include path+"/common/head.html" />
 </#macro>
 
-<#macro top>
-<#include "/common/top.html" />
+<#macro top title>
+<@h.head title />
 </#macro>
 
-<#-- 主题-->
-<#macro top>
-<#include "/common/theme.html" />
-</#macro>
 
 <#-- 底部 包含js等 -->
 <#macro foot>
-<#include "/common/foot.html" />
+<#include path+"/common/foot.html" />
 </#macro>
 
 <#--通用分页 -->
 <#macro page>
-<#include "/common/page.html" />
+<#include path+"/common/page.html" />
+</#macro>
+<#macro menu>
+<#include path+"/common/menu.html" />
 </#macro>

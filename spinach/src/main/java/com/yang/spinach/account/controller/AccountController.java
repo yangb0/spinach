@@ -1,4 +1,4 @@
-package com.yang.spinach.demo.controller;
+package com.yang.spinach.account.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,17 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yang.spinach.demo.entity.Account;
-import com.yang.spinach.demo.service.AccountService;
+import com.yang.spinach.account.entity.Account;
+import com.yang.spinach.account.service.AccountService;
 
 /**
  * 
  * @author <Auto generate>
  * @version 2015-04-15 13:44:42
- * @see com.yang.spinach.demo.web.Account
+ * @see com.yang.spinach.account.web.Account
  */
 @Controller
-@RequestMapping(value = "/account")
+@RequestMapping(value = "/user")
 public class AccountController {
 	@Resource
 	private AccountService accountService;
@@ -38,5 +38,8 @@ public class AccountController {
 		}
 		return map;
 	}
-
+	@RequestMapping("/list")
+	public String list(){
+		return "/user/list";
+	}
 }

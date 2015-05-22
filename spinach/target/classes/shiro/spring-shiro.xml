@@ -59,10 +59,10 @@
 		<property name="sessionDAO" ref="sessionDAO" />
 
 		<!-- 会话超时时间，单位：毫秒 -->
-		<property name="globalSessionTimeout" value="120000" />
+		<property name="globalSessionTimeout" value="1800000" />
 
 		<!-- 定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话 -->
-		<property name="sessionValidationInterval" value="120000" />
+		<property name="sessionValidationInterval" value="900000" />
 		<property name="sessionValidationSchedulerEnabled" value="true" />
 
 		<property name="sessionIdCookie" ref="sessionIdCookie" />

@@ -18,8 +18,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.yang.spinach.demo.entity.Account;
-import com.yang.spinach.demo.service.AccountService;
+import com.yang.spinach.account.entity.Account;
+import com.yang.spinach.account.service.AccountService;
 
 /**
  * 用户认证
