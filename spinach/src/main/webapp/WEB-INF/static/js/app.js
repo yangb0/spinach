@@ -658,7 +658,7 @@ var App = function () {
 
         // handle theme colors
         var setColor = function (color) {
-            $('#style_color').attr("href", "media/css/" + color + ".css");
+            $('#style_color').attr("href", "/static/css/" + color + ".css");
             $.cookie('style_color', color);                
         }
 
@@ -784,7 +784,7 @@ var App = function () {
         blockUI: function (el, centerY) {
             var el = jQuery(el); 
             el.block({
-                    message: '<img src="./media/image/ajax-loading.gif" align="">',
+                    message: '<img src="/static/image/ajax-loading.gif" align="">',
                     centerY: centerY != undefined ? centerY : true,
                     css: {
                         top: '10%',

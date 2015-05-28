@@ -1,297 +1,82 @@
- <@h.top title="用户登录 | spinach"/>
-
-<@h.menu />
-		<!-- END SIDEBAR -->
-
-		<!-- BEGIN PAGE -->
-
-		<div class="page-content">
-
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-
-
-			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-
-			<!-- BEGIN PAGE CONTAINER-->        
-
-			<div class="container-fluid">
-
-				<!-- BEGIN PAGE HEADER-->
-
-				<div class="row-fluid">
-
-					<div class="span12">
-
-						<!-- BEGIN STYLE CUSTOMIZER -->
-
-						<!-- END BEGIN STYLE CUSTOMIZER -->  
-
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-
-						<h3 class="page-title">
-
-							Editable Tables <small>editable table samples</small>
-
-						</h3>
-
-						<ul class="breadcrumb">
-
-							<li>
-
-								<i class="icon-home"></i>
-
-								<a href="index.html">Home</a> 
-
-								<i class="icon-angle-right"></i>
-
-							</li>
-
-							<li>
-
-								<a href="#">Data Tables</a>
-
-								<i class="icon-angle-right"></i>
-
-							</li>
-
-							<li><a href="#">Editable Tables</a></li>
-
-						</ul>
-
-						<!-- END PAGE TITLE & BREADCRUMB-->
-
-					</div>
-
-				</div>
-
-				<!-- END PAGE HEADER-->
-
-				<!-- BEGIN PAGE CONTENT-->
-
-				<div class="row-fluid">
-
-					<div class="span12">
-
-						<!-- BEGIN EXAMPLE TABLE PORTLET-->
-
-						<div class="portlet box blue">
-
-							<div class="portlet-title">
-
-								<div class="caption"><i class="icon-edit"></i>Editable Table</div>
-
-								<div class="tools">
-
-									<a href="javascript:;" class="collapse"></a>
-
-									<a href="#portlet-config" data-toggle="modal" class="config"></a>
-
-									<a href="javascript:;" class="reload"></a>
-
-									<a href="javascript:;" class="remove"></a>
-
-								</div>
-
-							</div>
-
-							<div class="portlet-body">
-
-								<div class="clearfix">
-
-									<div class="btn-group">
-
-										<button id="sample_editable_1_new" class="btn green">
-
-										Add New <i class="icon-plus"></i>
-
-										</button>
-
-									</div>
-
-									<div class="btn-group pull-right">
-
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-
-										</button>
-
-										<ul class="dropdown-menu pull-right">
-
-											<li><a href="#">Print</a></li>
-
-											<li><a href="#">Save as PDF</a></li>
-
-											<li><a href="#">Export to Excel</a></li>
-
-										</ul>
-
-									</div>
-
-								</div>
-
-								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-
-									<thead>
-
-										<tr>
-
-											<th>Username</th>
-
-											<th>Full Name</th>
-
-											<th>Points</th>
-
-											<th>Notes</th>
-
-											<th>Edit</th>
-
-											<th>Delete</th>
-
-										</tr>
-
-									</thead>
-
-									<tbody>
-
-										<tr class="">
-
-											<td>alex</td>
-
-											<td>Alex Nilson</td>
-
-											<td>1234</td>
-
-											<td class="center">power user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-										<tr class="">
-
-											<td>lisa</td>
-
-											<td>Lisa Wong</td>
-
-											<td>434</td>
-
-											<td class="center">new user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-										<tr class="">
-
-											<td>nick12</td>
-
-											<td>Nick Roberts</td>
-
-											<td>232</td>
-
-											<td class="center">power user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-										<tr class="">
-
-											<td>goldweb</td>
-
-											<td>Sergio Jackson</td>
-
-											<td>132</td>
-
-											<td class="center">elite user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-										<tr class="">
-
-											<td>webriver</td>
-
-											<td>Antonio Sanches</td>
-
-											<td>462</td>
-
-											<td class="center">new user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-										<tr class="">
-
-											<td>gist124</td>
-
-											<td>Nick Roberts</td>
-
-											<td>62</td>
-
-											<td class="center">new user</td>
-
-											<td><a class="edit" href="javascript:;">Edit</a></td>
-
-											<td><a class="delete" href="javascript:;">Delete</a></td>
-
-										</tr>
-
-									</tbody>
-
-								</table>
-
-							</div>
-
-						</div>
-
-						<!-- END EXAMPLE TABLE PORTLET-->
-
-					</div>
-
-				</div>
-
-				<!-- END PAGE CONTENT -->
-
+ <@h.head title="用户登录 | spinach"/> <@h.menu home="s" firMenu="系统管理"
+secMenu="用户管理"/>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h3 class="page-title">
+					用户管理 <small>用户列表</small>
+				</h3>
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="${path}/index">首页</a> <i
+						class="icon-angle-right"></i></li>
+					<li><a href="#">系统管理</a> <i class="icon-angle-right"></i></li>
+					<li><a href="${path}/user/list">用户管理</a></li>
+				</ul>
 			</div>
-
-			<!-- END PAGE CONTAINER-->
-
 		</div>
-
-		<!-- END PAGE -->
-
+		<!-- BEGIN PAGE CONTENT-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="icon-edit"></i>用户列表
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse"></a> <a
+								href="#portlet-config" data-toggle="modal" class="config"></a> <a
+								href="javascript:;" class="reload"></a> <a href="javascript:;"
+								class="remove"></a>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="clearfix">
+							<div class="btn-group">
+								<button id="sample_editable_1_new" class="btn green">
+									新增用户<i class="icon-plus"></i>
+								</button>
+							</div>
+						</div>
+						<table class="table table-striped table-hover table-bordered"
+							id="sample_editable_1">
+							<thead>
+								<tr>
+									<th>用户名</th>
+									<th>昵称</th>
+									<th>电话</th>
+									<th>邮箱</th>
+									<th>登陆时间</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+							<#list list as u>
+								<tr class="">
+									<td>${(u.username)!""}</td>
+									<td>${(u.nickName)!""}</td>
+									<td>${(u.mobile)!""}</td>
+									<td class="center">${(u.email)!""}</td>
+									<td>${u.loginTime?string("yyyy-MM-dd HH:MM:ss")}</td>
+									<td><a class="delete" href="javascript:;">Delete</a></td>
+								</tr>
+								</#list>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT -->
 	</div>
-
-	<!-- END CONTAINER -->
-
-	<!-- BEGIN FOOTER -->
-<@h.foot /> 
-
-	<script>
-
-		jQuery(document).ready(function() {       
-
-		   App.init();
-
-
-		});
-
-	</script>
-
+</div>
+</div>
+<@h.foot />
+<script>
+	jQuery(document).ready(function() {
+		App.init();
+	});
+</script>
 </body>
-
-<!-- END BODY -->
-
 </html>

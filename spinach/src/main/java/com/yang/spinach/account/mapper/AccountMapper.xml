@@ -2,25 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yang.spinach.account.dao.AccountDao">
 	<resultMap id="AccountMap" type="com.yang.spinach.account.entity.Account">
-		<id column="id" property="id"/>
-		<result column="username" property="username"/>
-		<result column="nick_name" property="nickName"/>
-		<result column="password" property="password"/>
-		<result column="mobile" property="mobile"/>
-		<result column="email" property="email"/>
-		<result column="user_type" property="userType"/>
-		<result column="login_time" property="loginTime"/>
-		<result column="disabled" property="disabled"/>
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="nick_name" property="nickName" />
+		<result column="password" property="password" />
+		<result column="mobile" property="mobile" />
+		<result column="email" property="email" />
+		<result column="user_type" property="userType" />
+		<result column="login_time" property="loginTime" />
+		<result column="disabled" property="disabled" />
 	</resultMap>
 
 	<!--保存 -->
-	<insert id="saveAccount" parameterType="com.yang.spinach.account.entity.Account" 	useGeneratedKeys="true" 
-		keyProperty="id" >
-		insert into t_account 
+	<insert id="saveAccount" parameterType="com.yang.spinach.account.entity.Account"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into t_account
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
 			<if test="username != null">
 				username,
 			</if>
@@ -47,9 +44,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id},
-			</if>
 			<if test="username != null">
 				#{username},
 			</if>
@@ -76,14 +70,11 @@
 			</if>
 		</trim>
 	</insert>
-	
-	<!--修改-->
+
+	<!--修改 -->
 	<update id="updateAccountById" parameterType="com.yang.spinach.account.entity.Account">
-		update t_account 
+		update t_account
 		<set>
-			<if test="id != null">
-				id=#{ id },
-			</if>
 			<if test="username != null">
 				username=#{ username },
 			</if>
@@ -109,22 +100,49 @@
 				disabled=#{ disabled },
 			</if>
 		</set>
-		where 
+		where
 		id=#{ id }
 	</update>
-	
-	<!--查询-->
-	<select id="selectAccountById" resultMap="AccountMap" parameterType="java.lang.Long">
+
+	<!--查询 -->
+	<select id="selectAccountById" resultMap="AccountMap"
+		parameterType="java.lang.Long">
 		select *
-		from t_account 
+		from t_account
 		where
 		id=#{ id }
 	</select>
 
 	<select id="selectByUsername" resultMap="AccountMap">
 		select *
-		from t_account where 1=1 and username=#{username}
+		from t_account
+		where 1=1 and username=#{username}
 		and
 		user_type=#{userType}
 	</select>
-</mapper>
+	<select id="listPage" resultMap="AccountMap"
+		parameterType="com.yang.spinach.account.entity.Account">
+		select * from t_account where 1=1
+		<if test="user.username != null">
+			and username=#{ user.username },
+		</if>
+		<if test="user.nickName != null">
+			and nick_name=#{ user.nickName },
+		</if>
+		<if test="user.mobile != null">
+			and mobile=#{ user.mobile },
+		</if>
+		<if test="user.email != null">
+			and email=#{ user.email },
+		</if>
+		<if test="user.userType != null">
+			and user_type=#{ user.userType },
+		</if>
+		<if test="user.loginTime != null">
+			and login_time=#{ user.loginTime },
+		</if>
+		<if test="user.disabled != null">
+			and disabled=#{ user.disabled },
+		</if>
+	</select>
+</mapper> 

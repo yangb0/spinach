@@ -1,12 +1,14 @@
 package com.yang.spinach.account.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yang.spinach.account.dao.AccountDao;
 import com.yang.spinach.account.entity.Account;
+import com.yang.spinach.frame.utils.page.Pagination;
 
 /**
  * 
@@ -39,4 +41,8 @@ public class AccountServiceImpl implements AccountService {
 		return accountDao.selectByUsername(username, userType);
 	}
 
+	@Override
+	public List<Account> listPage(Account account, Pagination pagination) {
+		return accountDao.listPage(account, pagination);
+	}
 }

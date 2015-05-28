@@ -8,15 +8,44 @@
 <li>
 			<div class="sidebar-toggler hidden-phone"></div>
 		</li>
+			<li class="start ${(home=='首页')?string('active','')}">
+					<a href="/index">
+					<i class="icon-home"></i> 
+					<span class="title">首页</span>
+					<span class="${(home=='首页')?string('selected','')}"></span>
+					</a>
+
+				</li>
 			{{each data as resource}}
 				{{if (resource.pid==0)}}
-<li class=""><a href="javascript:;"> <i class="{{resource.icon }}"></i>
-				<span class="title">{{resource.name }}</span> <span class="arrow "></span>
-		</a>
-			<ul class="sub-menu">
+					<#-- 一层目录选中样式Start-->
+					{{if (resource.name=='${firMenu}')}}
+					<li class="active">
+					{{else}}
+					<li >
+					{{/if}}
+						<a href="javascript:;"> <i class="{{resource.icon }}"></i>
+							<span class="title">{{resource.name }}</span> 
+					{{if (resource.name=='${firMenu}')}}
+					<span class="selected"></span>
+					{{else}}
+					<span class="arrow "></span>
+					{{/if}}
+							
+						</a>
+					<#-- 一层目录选中样式End-->
+					<ul class="sub-menu">
 					{{each data as c_permission}}	
 						{{if (c_permission.pid==resource.id)}}
-<li><a href="{{c_permission.url }}"><i class="{{c_permission.icon }}"></i>
+							<#--二层目录选中Start -->
+							{{if (c_permission.name=='${secMenu}')}}
+								<li class="active">
+							{{else}}
+								<li >
+							{{/if}}
+						<#--二层目录选中End -->
+								<a href="{{c_permission.url }}">
+								<i class="{{c_permission.icon }}"></i>
 						{{c_permission.name}}</a></li>
 						{{/if}}	
 					{{/each}}

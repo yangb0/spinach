@@ -1,9 +1,12 @@
 package com.yang.spinach.account.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.yang.spinach.account.entity.Account;
+import com.yang.spinach.frame.utils.page.Pagination;
 
 /**
  * 
@@ -43,4 +46,15 @@ public interface AccountDao {
 	 */
 	Account selectByUsername(@Param("username") String username,
 			@Param("userType") Long userType);
+
+	/**
+	 * 分页查找
+	 * 
+	 * @param account
+	 * @param pagination
+	 * @return
+	 */
+	List<Account> listPage(@Param("user") Account account,
+			@Param("pagination") Pagination pagination);
+
 }
