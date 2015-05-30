@@ -1,6 +1,7 @@
 package com.yang.spinach.account.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -44,5 +45,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<Account> listPage(Account account, Pagination pagination) {
 		return accountDao.listPage(account, pagination);
+	}
+
+	@Override
+	public Set<String> findPermissions(String username, Long type) {
+		return accountDao.findPermissions(username, type);
 	}
 }

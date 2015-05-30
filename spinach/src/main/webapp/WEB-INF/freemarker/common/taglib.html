@@ -17,3 +17,16 @@
 <#macro menu home firMenu secMenu >
 <#include path+"/common/menu.html" />
 </#macro>
+<#macro tools title>
+<div class="portlet-title">
+	<div class="caption">
+		<i class="icon-reorder"></i>${title}
+	</div>
+	<div class="tools">
+	<a href="javascript:;" class="collapse"></a> <a
+		href="#portlet-config" data-toggle="modal" class="config"></a> <a
+		href="javascript:;" class="reload"></a>
+</div>
+</div>
+
+</#macro>

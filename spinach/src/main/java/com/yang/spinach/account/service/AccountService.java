@@ -1,8 +1,7 @@
 package com.yang.spinach.account.service;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
+import java.util.Set;
 
 import com.yang.spinach.account.entity.Account;
 import com.yang.spinach.frame.utils.page.Pagination;
@@ -38,4 +37,13 @@ public interface AccountService {
 	Account selectByUsername(String username, Long userType);
 
 	List<Account> listPage(Account account, Pagination pagination);
+
+	/**
+	 * 获取用户权限标识
+	 * 
+	 * @param username
+	 * @param type
+	 * @return
+	 */
+	Set<String> findPermissions(String username, Long type);
 }

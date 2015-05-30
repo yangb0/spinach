@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,5 +48,11 @@ public class AccountController {
 		List<Account> list = accountService.listPage(account, pagination);
 		WebContext.currentRequest().setAttribute("list", list);
 		return "/user/list";
+	}
+
+	@RequiresPermissions("sys:user:add")
+	@RequestMapping("/add")
+	public String add(Long userId) {
+		return "/user/add";
 	}
 }

@@ -1,5 +1,7 @@
 package com.yang.spinach.frame.shiro;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.SecurityUtils;
@@ -57,11 +59,11 @@ public class ShiroAccountRealm extends AuthorizingRealm {
 		account = accountService.selectByUsername(username, type);
 		// 获取权限信息
 		if (null != account) {
-			// Set<String> permissions =
-			// accountService.findPermissions(username, type);
-			// if (permissions!=null&&permissions.size() > 0) {
-			// authorizationInfo.addStringPermissions(permissions);
-			// }
+			Set<String> permissions = accountService.findPermissions(username,
+					type);
+			if (permissions != null && permissions.size() > 0) {
+				authorizationInfo.addStringPermissions(permissions);
+			}
 			return authorizationInfo;
 		} else {
 			throw new AuthorizationException();

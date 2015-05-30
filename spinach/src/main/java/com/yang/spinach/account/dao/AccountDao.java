@@ -1,6 +1,7 @@
 package com.yang.spinach.account.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -57,4 +58,12 @@ public interface AccountDao {
 	List<Account> listPage(@Param("user") Account account,
 			@Param("pagination") Pagination pagination);
 
+	/**
+	 * 获取用户权限标识
+	 * 
+	 * @param username
+	 * @param type
+	 * @return
+	 */
+	Set<String> findPermissions(@Param("username")String username, @Param("userType")Long type);
 }

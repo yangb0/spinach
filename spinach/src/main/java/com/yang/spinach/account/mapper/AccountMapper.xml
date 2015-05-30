@@ -145,4 +145,10 @@
 			and disabled=#{ user.disabled },
 		</if>
 	</select>
+	
+	<select id="findPermissions" resultType="java.lang.String">
+	select DISTINCT s.permission from t_account a ,t_account_role r,t_role_resources rs,t_resources s
+where a.id=r.user_id and r.role_id=rs.role_id and rs.resources_id=s.id
+and a.username=#{username} and a.user_type=#{userType}
+	</select>
 </mapper> 
