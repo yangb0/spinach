@@ -52,5 +52,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 			<value>10000000</value><!-- 上传文件大小限制为100M -->
 		</property>
 	</bean>
-
+	<import resource="classpath:spring-mvc-shiro.xml" />
 </beans>
