@@ -38,7 +38,6 @@
 	</filter-mapping>
 	<!-- 设置servlet编码结束 -->
 
-
 	<!-- shiro 安全过滤器 开始 -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>

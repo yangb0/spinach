@@ -13,10 +13,10 @@
 	</bean>
 
 	<bean id="freeMarkerConfigurer"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		class="com.yang.spinach.frame.shiro.ShiroTagFreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="/WEB-INF/freemarker/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
 	</bean>
-	
+
 </beans>

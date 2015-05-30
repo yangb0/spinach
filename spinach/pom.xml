@@ -322,10 +322,15 @@
 			<version>2.2.4</version>
 		</dependency>
 		<dependency>
-    	<groupId>org.freemarker</groupId>
-    	<artifactId>freemarker</artifactId>
-    	<version>${freemarker.version}</version>
-    </dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.dreampie</groupId>
+			<artifactId>jfinal-shiro-freemarker</artifactId>
+			<version>0.2</version>
+		</dependency>
 	</dependencies>
 
 </project>
