@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-05-22 22:28:17
+Date: 2015-05-31 00:10:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,28 +66,28 @@ CREATE TABLE `t_resources` (
   `name` varchar(50) NOT NULL COMMENT '名称',
   `type` int(2) DEFAULT NULL COMMENT '类型:0:菜单,1:功能',
   `sort` int(11) DEFAULT NULL COMMENT '排序',
-  `url` varchar(255) DEFAULT NULL,
-  `permission` varchar(50) DEFAULT NULL COMMENT '菜单编码',
-  `icon` varchar(255) DEFAULT NULL,
-  `state` varchar(10) DEFAULT NULL,
+  `url` varchar(255) DEFAULT ' ',
+  `permission` varchar(50) NOT NULL COMMENT '菜单编码',
+  `icon` varchar(255) DEFAULT ' ',
+  `state` varchar(10) DEFAULT ' ',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 -- ----------------------------
 -- Records of t_resources
 -- ----------------------------
-INSERT INTO `t_resources` VALUES ('1', '0', '系统管理', '0', '1', '', '', 'icon-standard-cog', '', '');
-INSERT INTO `t_resources` VALUES ('2', '1', '角色管理', '0', '3', '', '', 'icon-hamburg-my-account', 'closed', '');
-INSERT INTO `t_resources` VALUES ('3', '1', '用户管理', '0', '2', '', '', 'icon-hamburg-user', 'closed', '');
+INSERT INTO `t_resources` VALUES ('1', '0', '系统管理', '0', '1', '', 'sys:manager', 'icon-cogs', '', '');
+INSERT INTO `t_resources` VALUES ('2', '1', '角色管理', '0', '3', '', 'sys:role:list', ' icon-user', 'closed', '');
+INSERT INTO `t_resources` VALUES ('3', '1', '用户管理', '0', '2', '/user/list', 'sys:user:list', 'icon-hamburg-user', 'closed', '');
 INSERT INTO `t_resources` VALUES ('4', '2', '添加', '1', null, '', 'sys:role:add', '', '', '角色添加');
 INSERT INTO `t_resources` VALUES ('5', '2', '删除', '1', null, '', 'sys:role:delete', '', '', '角色删除');
 INSERT INTO `t_resources` VALUES ('6', '2', '修改', '1', null, '', 'sys:role:update', '', '', '角色修改');
 INSERT INTO `t_resources` VALUES ('7', '3', '添加', '1', null, '', 'sys:user:add', '', '', '用户添加');
 INSERT INTO `t_resources` VALUES ('8', '3', '删除', '1', null, '', 'sys:user:delete', '', '', '用户删除');
-INSERT INTO `t_resources` VALUES ('9', '1', '权限管理', '0', '5', '', '', 'icon-hamburg-login', 'closed', '');
-INSERT INTO `t_resources` VALUES ('10', '11', '数据源监控', '0', '6', '/monitoring', '', 'icon-hamburg-database', '', '');
-INSERT INTO `t_resources` VALUES ('11', '0', '系统监控', '0', '5', '', '', 'icon-hamburg-graphic', '', '');
+INSERT INTO `t_resources` VALUES ('9', '1', '权限管理', '0', '5', '', 'access:manager', 'icon-hamburg-login', 'closed', '');
+INSERT INTO `t_resources` VALUES ('10', '11', '数据源监控', '0', '6', '/monitoring', 'monitoring:data', 'icon-hamburg-database', '', '');
+INSERT INTO `t_resources` VALUES ('11', '0', '系统监控', '0', '5', '', 'monitoring:system', 'icon-bar-chart', '', '');
 INSERT INTO `t_resources` VALUES ('12', '3', '修改', '1', null, '', 'sys:user:update', '', '', '用户修改');
 INSERT INTO `t_resources` VALUES ('13', '24', '添加', '1', null, '', 'sys:perm:add', '', '', '菜单添加');
 INSERT INTO `t_resources` VALUES ('14', '24', '修改', '1', null, '', 'sys:perm:update', '', '', '菜单修改');
@@ -99,9 +99,9 @@ INSERT INTO `t_resources` VALUES ('19', '3', '查看用户角色', '1', null, ''
 INSERT INTO `t_resources` VALUES ('20', '2', '保存授权', '1', null, '', 'sys:role:permUpd', '', null, '保存修改的角色权限');
 INSERT INTO `t_resources` VALUES ('21', '3', '修改用户角色', '1', null, '', 'sys:user:roleUpd', '', null, '修改用户拥有的角色');
 INSERT INTO `t_resources` VALUES ('22', '2', '查看角色权限', '1', null, '', 'sys:role:permView', '', null, '查看角色拥有的权限');
-INSERT INTO `t_resources` VALUES ('23', '11', '定时任务管理', '0', '9', '', '', 'icon-hamburg-full-time', null, '定时任务管理，支持集群');
-INSERT INTO `t_resources` VALUES ('24', '1', '菜单管理', '0', '4', '', '', 'icon-hamburg-old-versions', null, '');
-INSERT INTO `t_resources` VALUES ('25', '1', '字典管理', '0', '6', '', null, 'icon-hamburg-address', null, '数据字典管理');
+INSERT INTO `t_resources` VALUES ('23', '11', '定时任务管理', '0', '9', '', 'monitoring:task', 'icon-hamburg-full-time', null, '定时任务管理，支持集群');
+INSERT INTO `t_resources` VALUES ('24', '1', '菜单管理', '0', '4', '', 'sys:perm:manager', 'icon-hamburg-old-versions', null, '');
+INSERT INTO `t_resources` VALUES ('25', '1', '字典管理', '0', '6', '', 'sys:dictionaries', 'icon-hamburg-address', null, '数据字典管理');
 
 -- ----------------------------
 -- Table structure for t_role
@@ -135,7 +135,7 @@ CREATE TABLE `t_role_resources` (
   PRIMARY KEY (`id`),
   KEY `FK_ROLE_PER_REFERENCE_PERMISSI` (`resources_id`) USING BTREE,
   KEY `FK_ROLE_PER_REFERENCE_ROLE` (`role_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='资源-角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='资源-角色关联表';
 
 -- ----------------------------
 -- Records of t_role_resources
@@ -177,3 +177,26 @@ INSERT INTO `t_role_resources` VALUES ('34', '1', '34');
 INSERT INTO `t_role_resources` VALUES ('35', '1', '35');
 INSERT INTO `t_role_resources` VALUES ('36', '1', '36');
 INSERT INTO `t_role_resources` VALUES ('37', '1', '37');
+
+-- ----------------------------
+-- Table structure for dict
+-- ----------------------------
+DROP TABLE IF EXISTS `dict`;
+CREATE TABLE `dict` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LABEL` varchar(255) DEFAULT NULL,
+  `VALUE` varchar(255) DEFAULT NULL,
+  `TYPE` varchar(255) DEFAULT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `SORT` int(11) DEFAULT NULL,
+  `REMARK` varchar(255) DEFAULT NULL,
+  `DEL_FLAG` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dict
+-- ----------------------------
+
+INSERT INTO `dict` VALUES ('1', '普通用户', '0', 'user', '用户类型', null, null, null);
+INSERT INTO `dict` VALUES ('2', '会员用户', '1', 'user', '用户类型', null, null, null);
