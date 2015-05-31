@@ -32,6 +32,10 @@ public class WebContext {
 		return locals == null ? null : (HttpServletResponse) locals[1];
 	}
 
+	public static void setAttribute(String name, Object o) {
+		currentRequest().setAttribute(name, o);
+	}
+
 	/**
 	 * 在进入WebContextFilter过滤器时，将request和response注册到ThreadLocal中
 	 * 

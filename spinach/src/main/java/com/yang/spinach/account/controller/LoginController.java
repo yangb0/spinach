@@ -1,4 +1,4 @@
-package com.yang.spinach.frame.controller;
+package com.yang.spinach.account.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -64,20 +64,10 @@ public class LoginController {
 		return "/index";
 	}
 
-	// @RequestMapping(value = "/login", method = RequestMethod.GET)
-	// public String login(Model model, HttpServletRequest request)
-	// throws Exception {
-	// if (SecurityUtils.getSubject().isAuthenticated()) {
-	// return "redirect:/index";
-	// }
-	// return "/login";
-	// }
-
 	@ResponseBody
 	@RequestMapping(value = "/login.json")
 	public Object loginPost(Account account, Model model) throws Exception {
 		// type 类型用来标注会员类型,0表示普通会员
-		ShiroSessionUtils.setAttribute("type", "0");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", -1);
 		// 判断验证码
@@ -114,7 +104,6 @@ public class LoginController {
 				map.put("data", a);
 				map.put("msg", "登陆成功");
 				return map;
-				// model.addAttribute("user", map);
 			}
 		} catch (UnknownAccountException uae) {
 			map.put("msg", "账号不存在!");

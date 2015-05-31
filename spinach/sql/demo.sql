@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-05-31 00:10:13
+Date: 2015-05-31 22:19:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,17 +26,20 @@ CREATE TABLE `t_account` (
   `password` varchar(50) NOT NULL,
   `mobile` varchar(50) DEFAULT NULL COMMENT '手机号码',
   `email` varchar(50) DEFAULT NULL,
-  `user_type` int(2) NOT NULL DEFAULT '0' COMMENT '用户类型 0:普通会员 1:管理员',
+  `user_type` int(2) NOT NULL DEFAULT '0' COMMENT '用户类型 0:普通用户,1:会员用户,2:管理员用户',
   `login_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `disabled` int(2) NOT NULL DEFAULT '0' COMMENT '是否可用(0:可用 1:不可用)',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_account
 -- ----------------------------
-INSERT INTO `t_account` VALUES ('1', 'demo', 'demo', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', 'demo@demo.com', '0', '2015-05-21 22:28:49', '0');
-INSERT INTO `t_account` VALUES ('2', 'user', 'user', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', ' ', '0', '2015-05-21 22:29:26', '0');
+INSERT INTO `t_account` VALUES ('1', 'demo', 'demo', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', 'demo@demo.com', '2', '2015-05-31 16:30:38', '0');
+INSERT INTO `t_account` VALUES ('2', 'user', 'user', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '10001@qq.com', '0', '2015-05-31 16:49:13', '0');
+INSERT INTO `t_account` VALUES ('3', 'test', 'test', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '111@qq.com', '0', '2015-05-31 21:14:47', '0');
+INSERT INTO `t_account` VALUES ('5', 'test1', '1111', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '11@qq.com', '0', '2015-05-31 21:19:20', '0');
 
 -- ----------------------------
 -- Table structure for t_account_role
@@ -57,6 +60,30 @@ CREATE TABLE `t_account_role` (
 INSERT INTO `t_account_role` VALUES ('1', '1', '1');
 
 -- ----------------------------
+-- Table structure for t_dict
+-- ----------------------------
+DROP TABLE IF EXISTS `t_dict`;
+CREATE TABLE `t_dict` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(200) NOT NULL DEFAULT '' COMMENT '显示内容',
+  `value` int(10) NOT NULL DEFAULT '0' COMMENT '值',
+  `target_column` varchar(10) DEFAULT '' COMMENT '对应字段',
+  `descrption` varchar(100) DEFAULT '' COMMENT '描述',
+  `sort` int(11) DEFAULT '0' COMMENT '排序',
+  `remark` varchar(100) DEFAULT '' COMMENT '备注',
+  `disabled` int(2) NOT NULL DEFAULT '0' COMMENT '是否启用:0启用,1不启用',
+  PRIMARY KEY (`id`),
+  KEY `target_column` (`target_column`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='字典表';
+
+-- ----------------------------
+-- Records of t_dict
+-- ----------------------------
+INSERT INTO `t_dict` VALUES ('1', '普通用户', '0', 'user_type', '用户类型', '0', ' ', '0');
+INSERT INTO `t_dict` VALUES ('2', '会员用户', '1', 'user_type', '用户类型', '0', ' ', '0');
+INSERT INTO `t_dict` VALUES ('3', '管理员用户', '2', 'user_type', '用户类型', '0', '', '0');
+
+-- ----------------------------
 -- Table structure for t_resources
 -- ----------------------------
 DROP TABLE IF EXISTS `t_resources`;
@@ -66,9 +93,9 @@ CREATE TABLE `t_resources` (
   `name` varchar(50) NOT NULL COMMENT '名称',
   `type` int(2) DEFAULT NULL COMMENT '类型:0:菜单,1:功能',
   `sort` int(11) DEFAULT NULL COMMENT '排序',
-  `url` varchar(255) DEFAULT ' ',
+  `url` varchar(200) DEFAULT ' ',
   `permission` varchar(50) NOT NULL COMMENT '菜单编码',
-  `icon` varchar(255) DEFAULT ' ',
+  `icon` varchar(100) DEFAULT ' ',
   `state` varchar(10) DEFAULT ' ',
   `description` text,
   PRIMARY KEY (`id`)
@@ -113,16 +140,16 @@ CREATE TABLE `t_role` (
   `role_code` varchar(20) NOT NULL,
   `description` text,
   `sort` int(6) DEFAULT NULL,
-  `disabled` varchar(255) DEFAULT NULL,
+  `disabled` int(2) NOT NULL DEFAULT '0' COMMENT '是否启用:0启用,1弃用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES ('1', 'admin', 'admin', 'admin', '2', null);
-INSERT INTO `t_role` VALUES ('5', 'guest', 'guest', 'guest', '3', null);
-INSERT INTO `t_role` VALUES ('13', 'superadmin', 'superadmin', '超级管理员', '1', null);
+INSERT INTO `t_role` VALUES ('1', 'admin', 'admin', 'admin', '2', '0');
+INSERT INTO `t_role` VALUES ('2', 'guest', 'guest', 'guest', '3', '0');
+INSERT INTO `t_role` VALUES ('3', 'superadmin', 'superadmin', '超级管理员', '1', '0');
 
 -- ----------------------------
 -- Table structure for t_role_resources
@@ -177,26 +204,3 @@ INSERT INTO `t_role_resources` VALUES ('34', '1', '34');
 INSERT INTO `t_role_resources` VALUES ('35', '1', '35');
 INSERT INTO `t_role_resources` VALUES ('36', '1', '36');
 INSERT INTO `t_role_resources` VALUES ('37', '1', '37');
-
--- ----------------------------
--- Table structure for dict
--- ----------------------------
-DROP TABLE IF EXISTS `dict`;
-CREATE TABLE `dict` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `LABEL` varchar(255) DEFAULT NULL,
-  `VALUE` varchar(255) DEFAULT NULL,
-  `TYPE` varchar(255) DEFAULT NULL,
-  `DESCRIPTION` varchar(255) DEFAULT NULL,
-  `SORT` int(11) DEFAULT NULL,
-  `REMARK` varchar(255) DEFAULT NULL,
-  `DEL_FLAG` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of dict
--- ----------------------------
-
-INSERT INTO `dict` VALUES ('1', '普通用户', '0', 'user', '用户类型', null, null, null);
-INSERT INTO `dict` VALUES ('2', '会员用户', '1', 'user', '用户类型', null, null, null);

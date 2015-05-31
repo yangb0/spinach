@@ -54,13 +54,10 @@ public class ShiroAccountRealm extends AuthorizingRealm {
 		String username = (String) principalCollection.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		Account account = null;
-		Long type = Long.valueOf((String) ShiroSessionUtils
-				.getAttribute("type"));
-		account = accountService.selectByUsername(username, type);
+		account = accountService.selectByUsername(username);
 		// 获取权限信息
 		if (null != account) {
-			Set<String> permissions = accountService.findPermissions(username,
-					type);
+			Set<String> permissions = accountService.findPermissions(username);
 			if (permissions != null && permissions.size() > 0) {
 				authorizationInfo.addStringPermissions(permissions);
 			}
@@ -80,9 +77,7 @@ public class ShiroAccountRealm extends AuthorizingRealm {
 		// Account account =
 		// accountService.findAccountByUsername(token2.getUsername());
 		Account account = null;
-		Long type = Long.valueOf((String) ShiroSessionUtils
-				.getAttribute("type"));
-		account = accountService.selectByUsername(username, type);
+		account = accountService.selectByUsername(username);
 		if (null != account) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(
 					username, account.getPassword(), this.getName());

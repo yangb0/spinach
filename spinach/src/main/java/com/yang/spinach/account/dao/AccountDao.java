@@ -45,8 +45,7 @@ public interface AccountDao {
 	 * @param userType
 	 * @return
 	 */
-	Account selectByUsername(@Param("username") String username,
-			@Param("userType") Long userType);
+	Account selectByUsername(String username);
 
 	/**
 	 * 分页查找
@@ -65,5 +64,5 @@ public interface AccountDao {
 	 * @param type
 	 * @return
 	 */
-	Set<String> findPermissions(@Param("username")String username, @Param("userType")Long type);
+	Set<String> findPermissions(String username);
 }

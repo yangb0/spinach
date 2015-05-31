@@ -1,5 +1,5 @@
  <@h.head title="用户登录 | spinach"/>
- <br>
+<br>
 <body class="login">
 	<!-- BEGIN LOGO -->
 
@@ -12,8 +12,8 @@
 	<!-- END LOGO -->
 	<div class="content">
 		<!-- BEGIN LOGIN FORM -->
-		<form class="form-vertical login-form" 
-			method="post">
+		<form class="form-vertical login-form" action="${path}/login.json"
+			id="fm" method="post">
 			<h3 class="form-title">Login to your account</h3>
 			<div class="alert alert-error hide">
 				<span>请输入用户名或密码.</span>
@@ -23,7 +23,9 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-user"></i> <input class="m-wrap placeholder-no-fix"
-							type="text" placeholder="Username" name="username" value="demo"/>
+							type="text" placeholder="Username" name="username" value="demo"
+							datatype="*" nullmsg="请输入用户名！" /> <span
+							class="Validform_checktip"></span>
 					</div>
 				</div>
 			</div>
@@ -32,7 +34,9 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-lock"></i> <input class="m-wrap placeholder-no-fix"
-							type="password" placeholder="Password" name="password" value="123456"/>
+							type="password" placeholder="Password" name="password"
+							value="123456" datatype="*" nullmsg="密码不能为空！" /> <span
+							class="Validform_checktip"></span>
 					</div>
 				</div>
 			</div>
@@ -48,12 +52,16 @@
 		<!-- END LOGIN FORM -->
 	</div>
 	<@h.foot />
-	<script src="${path}/static/js/login.js" type="text/javascript"></script>
-	<script>
-		jQuery(document).ready(function() {
-			App.init();
-			Login.init();
-		});
+	<script type="text/javascript">
+		var callback = function(data) {
+			if (data.status == "0") {
+				window.location.href = path + "/index";
+			} else {
+				$('.alert-error', $('.login-form')).find("span").html(data.msg);
+				$('.alert-error', $('.login-form')).show();
+			}
+		}
+		$("#fm").validFrom(callback);
 	</script>
 	<!-- END JAVASCRIPTS -->
 </body>

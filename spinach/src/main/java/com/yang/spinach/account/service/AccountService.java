@@ -34,7 +34,7 @@ public interface AccountService {
 	 */
 	Account selectAccountById(Long id) throws Exception;
 
-	Account selectByUsername(String username, Long userType);
+	Account selectByUsername(String username);
 
 	List<Account> listPage(Account account, Pagination pagination);
 
@@ -45,5 +45,5 @@ public interface AccountService {
 	 * @param type
 	 * @return
 	 */
-	Set<String> findPermissions(String username, Long type);
+	Set<String> findPermissions(String username);
 }

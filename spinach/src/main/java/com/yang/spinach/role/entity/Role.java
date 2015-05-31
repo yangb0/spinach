@@ -38,7 +38,7 @@ public class Role implements Serializable {
 	/**
 	 * disabled
 	 */
-	private String disabled;
+	private Integer disabled;
 
 	// columns END 数据库字段结束
 
@@ -97,16 +97,12 @@ public class Role implements Serializable {
 		return this.sort;
 	}
 
-	public void setDisabled(String disabled) {
-
-		if (StringUtils.isNotBlank(disabled)) {
-			disabled = disabled.trim();
-		}
-		this.disabled = disabled;
+	public Integer getDisabled() {
+		return disabled;
 	}
 
-	public String getDisabled() {
-		return this.disabled;
+	public void setDisabled(Integer disabled) {
+		this.disabled = disabled;
 	}
 
 	public String toString() {

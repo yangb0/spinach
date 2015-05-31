@@ -38,8 +38,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account selectByUsername(String username, Long userType) {
-		return accountDao.selectByUsername(username, userType);
+	public Account selectByUsername(String username) {
+		return accountDao.selectByUsername(username);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Set<String> findPermissions(String username, Long type) {
-		return accountDao.findPermissions(username, type);
+	public Set<String> findPermissions(String username) {
+		return accountDao.findPermissions(username);
 	}
 }

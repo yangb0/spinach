@@ -1,6 +1,7 @@
 <div class="copyright">2015 &copy; spinach. Admin Dashboard
-		Template.</div>
-<script src="${path }/static/js/jquery/jquery.twbsPagination.min.js"  type="text/javascript"></script>
+	Template.</div>
+<script src="${path }/static/js/jquery/jquery.twbsPagination.min.js"
+	type="text/javascript"></script>
 <script src="${path }/static/js/jquery/jquery-migrate-1.2.1.min.js"
 	type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
@@ -22,6 +23,16 @@
 <script type="text/javascript"
 	src="${path }/static/js/jquery/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${path }/static/js/DT_bootstrap.js"></script>
-<script type="text/javascript" src="${path }/static/js/jquery/jquery.validate.min.js"></script>
+<link href="${path }/static/js/validation/validation.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+	src="${path }/static/js/validation/Validform_v5.3.2_min.js"></script>
 
 <script type="text/javascript" src="${path }/static/js/app.js"></script>
+<script type="text/javascript"
+	src="${path }/static/js/spinach/spinach.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		App.init();
+	});
+</script>

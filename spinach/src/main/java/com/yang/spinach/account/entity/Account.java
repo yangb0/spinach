@@ -5,7 +5,8 @@ import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * 
@@ -23,10 +24,12 @@ public class Account implements Serializable {
 	/**
 	 * username
 	 */
+	@NotBlank(message = "用户名不能为空")
 	private String username;
 	/**
-	 * 手机号码
+	 * 昵称
 	 */
+	@NotBlank(message = "昵称不能为空")
 	private String nickName;
 	/**
 	 * password
@@ -40,6 +43,7 @@ public class Account implements Serializable {
 	/**
 	 * email
 	 */
+	@Email
 	private String email;
 	/**
 	 * 用户类型 0:普通会员 1:管理员
@@ -54,6 +58,8 @@ public class Account implements Serializable {
 	 */
 	@JsonIgnore
 	private Integer disabled;
+
+	private String keyWords;// 查询字段
 
 	public void setId(Long id) {
 
@@ -156,6 +162,14 @@ public class Account implements Serializable {
 
 	public Integer getDisabled() {
 		return this.disabled;
+	}
+
+	public String getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
 	}
 
 	public String toString() {
