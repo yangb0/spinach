@@ -48,6 +48,7 @@ public class AccountController {
 			map.put("data", a);
 		} catch (Exception e) {
 			e.printStackTrace();
+			map.put("msg", Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -76,14 +77,18 @@ public class AccountController {
 		map.put("status", -1);
 		try {
 			String message = ValidatorUtils.validate(account);
+			Integer i = 0;
 			if (StringUtils.isBlank(message)) {
 				if (account.getId() != null && account.getId() != 0) {
-					accountService.updateAccountById(account);
+					i = accountService.updateAccountById(account);
 				} else {
 					account.setPassword(MD5.digest(account.getPassword()));
-					accountService.saveAccount(account);
+					i = accountService.saveAccount(account);
 				}
-				map.put("status", 0);
+				if(i>0){
+					map.put("status", 0);
+					map.put("msg", "保存成功");
+				}
 			} else {
 				map.put("msg", message);
 			}

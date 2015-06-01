@@ -19,14 +19,14 @@
 			{{each data as resource}}
 				{{if (resource.pid==0)}}
 					<#-- 一层目录选中样式Start-->
-					{{if (resource.name=='${firMenu}')}}
+					{{if (resource.name=='${firMenu!''}')}}
 					<li class="active">
 					{{else}}
 					<li >
 					{{/if}}
 						<a href="javascript:;"> <i class="{{resource.icon }}"></i>
 							<span class="title">{{resource.name }}</span> 
-					{{if (resource.name=='${firMenu}')}}
+					{{if (resource.name=='${firMenu!''}')}}
 					<span class="selected"></span>
 					{{else}}
 					<span class="arrow "></span>
@@ -38,7 +38,7 @@
 					{{each data as c_permission}}	
 						{{if (c_permission.pid==resource.id)}}
 							<#--二层目录选中Start -->
-							{{if (c_permission.name=='${secMenu}')}}
+							{{if (c_permission.name=='${secMenu!''}')}}
 								<li class="active">
 							{{else}}
 								<li >

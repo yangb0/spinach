@@ -1,34 +1,38 @@
 package com.yang.spinach.role.service;
 
-import com.yang.spinach.role.entity.Role;
+import java.util.List;
 
+import com.yang.spinach.frame.utils.page.Pagination;
+import com.yang.spinach.role.entity.Role;
 
 /**
  * 
  * @author <Auto generate>
- * @version  2015-05-21 23:16:42
+ * @version 2015-05-21 23:16:42
  * @see com.yang.spinach.service.Role
  */
 public interface RoleService {
 	/**
-	 *保存
+	 * 保存
 	 *
 	 */
-	public Integer  saveRole(Role entity ) throws Exception;
+	public Integer saveRole(Role entity) throws Exception;
+
 	/**
-	 *修改
+	 * 修改
 	 *
 	 */
-	public Integer updateRoleById(Role entity ) throws Exception;
-	
+	public Integer updateRoleById(Role entity) throws Exception;
+
 	/**
 	 * 根据ID查找
+	 * 
 	 * @param id
 	 * @return
 	 * @throws Exception
 	 */
 	Role selectRoleById(Object id) throws Exception;
-	
-	
-	
+
+	List<Role> listPage(Role role, Pagination pagination);
+
 }

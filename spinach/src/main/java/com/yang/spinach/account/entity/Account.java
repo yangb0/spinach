@@ -56,7 +56,6 @@ public class Account implements Serializable {
 	/**
 	 * 是否可用(0:可用 1:不可用)
 	 */
-	@JsonIgnore
 	private Integer disabled;
 
 	private String keyWords;// 查询字段

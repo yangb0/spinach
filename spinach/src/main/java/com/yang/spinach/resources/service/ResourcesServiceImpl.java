@@ -2,13 +2,12 @@ package com.yang.spinach.resources.service;
 
 import java.util.List;
 
-import com.yang.spinach.frame.shiro.ShiroSessionUtils;
-import com.yang.spinach.resources.entity.Resources;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.resources.dao.ResourcesDao;
+import com.yang.spinach.resources.entity.Resources;
 
 /**
  * 
@@ -39,6 +38,11 @@ public class ResourcesServiceImpl implements ResourcesService {
 	@Override
 	public List<Resources> findByAccountId(Long id) throws Exception {
 		return resourcesDao.findByAccountId(id);
+	}
+
+	@Override
+	public List<Resources> listPage(Resources resource, Pagination pagination) {
+		return resourcesDao.listPage(resource, pagination);
 	}
 
 }

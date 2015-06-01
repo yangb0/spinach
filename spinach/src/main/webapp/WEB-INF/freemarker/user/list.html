@@ -1,4 +1,4 @@
- <@h.head title="用户登录 | spinach"/> <@h.menu home="s" firMenu="系统管理"
+ <@h.head title="用户列表 | spinach"/> <@h.menu home="s" firMenu="系统管理"
 secMenu="用户管理"/>
 <div class="page-content">
 	<div class="container-fluid">
@@ -50,7 +50,7 @@ secMenu="用户管理"/>
 									<th>电话</th>
 									<th>邮箱</th>
 									<th>最后登陆时间</th>
-									<th>Delete</th>
+									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -61,7 +61,7 @@ secMenu="用户管理"/>
 									<td>${(u.mobile)!""}</td>
 									<td class="center">${(u.email)!""}</td>
 									<td>${u.loginTime?string("yyyy-MM-dd HH:MM:ss")}</td>
-									<td><a class="delete" href="${path}/user/info/${(u.id)!0}">修改</a></td>
+									<td><a class="edit" href="${path}/user/info/${(u.id)!0}">修改</a></td>
 								</tr>
 								</#list>
 							</tbody>

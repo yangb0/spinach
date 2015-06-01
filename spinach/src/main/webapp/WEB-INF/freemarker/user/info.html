@@ -1,12 +1,10 @@
- <@h.head title="用户登录 | spinach"/> <@h.menu home="s" firMenu="系统管理"
+ <@h.head title="用户管理 | spinach"/> <@h.menu home="s" firMenu="系统管理"
 secMenu="用户管理"/>
 <div class="page-content">
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<h3 class="page-title">
-					用户管理 <small>新增用户</small>
-				</h3>
+				<h3 class="page-title">用户管理</h3>
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="${path}/index">首页</a> <i
 						class="icon-angle-right"></i></li>
@@ -18,7 +16,7 @@ secMenu="用户管理"/>
 		<div class="row-fluid">
 			<div class="span12">
 				<div class="portlet box purple">
-					<@h.tools title="新增用户"/>
+					<@h.tools title="用户管理"/>
 					<div class="portlet-body form">
 						<!-- BEGIN FORM-->
 						<form action="${path}/user/save" id="fm" class="form-horizontal"
@@ -31,7 +29,7 @@ secMenu="用户管理"/>
 							<div class="control-group">
 								<label class="control-label">用户名<span class="required">*</span></label>
 								<div class="controls">
-									<input type="text" name="username" 
+									<input type="text" name="username"
 										class="span6 m-wrap disabled Validform_error" datatype="s4-18"
 										nullmsg="请输入用户名！" errormsg="用户名至少4个字符,最多18个字符！" /> <span
 										class="Validform_checktip">用户名为4~18个字符</span>
@@ -40,10 +38,9 @@ secMenu="用户管理"/>
 							<div class="control-group" id="password">
 								<label class="control-label">密码<span class="required">*</span></label>
 								<div class="controls">
-									<input type="text" name="password" 
-										class="span6 m-wrap" value="123456" datatype="s6-18"
-										nullmsg="请输入密码！" errormsg="密码至少6个字符,最多18个字符！"/>
-										<span
+									<input type="text" name="password" class="span6 m-wrap"
+										value="123456" datatype="s6-18" nullmsg="请输入密码！"
+										errormsg="密码至少6个字符,最多18个字符！" /> <span
 										class="Validform_checktip">密码为6~18个字符</span>
 								</div>
 							</div>
@@ -51,30 +48,41 @@ secMenu="用户管理"/>
 								<label class="control-label">昵称<span class="required">*</span></label>
 								<div class="controls">
 
-									<input name="nickName" type="text" class="span6 m-wrap" datatype="s4-18"
-										nullmsg="请输入昵称！" errormsg="昵称至少4个字符,最多18个字符！" /> <span
-										class="Validform_checktip">昵称为4~18个字符</span>
+									<input name="nickName" type="text" class="span6 m-wrap"
+										datatype="s4-18" nullmsg="请输入昵称！" errormsg="昵称至少4个字符,最多18个字符！" />
+									<span class="Validform_checktip">昵称为4~18个字符</span>
 								</div>
 							</div>
 							<div class="control-group">
 
 								<label class="control-label">手机号码<span class="required">*</span></label>
 								<div class="controls">
-									<input name="mobile" type="text" class="span6 m-wrap" datatype="m"/>
+									<input name="mobile" type="text" class="span6 m-wrap"
+										datatype="m" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">Email<span class="required">*</span></label>
 								<div class="controls">
-									<input name="email" type="text" class="span6 m-wrap" datatype="e"/>
+									<input name="email" type="text" class="span6 m-wrap"
+										datatype="e" />
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label">用户类型<span class="required">*</span></label>
+								<label class="control-label">用户类型</label>
 								<div class="controls">
 									<select class="span6 m-wrap" name="userType"> <#list
 										list as d>
 										<option value="${d.value}">${d.label}</option> </#list>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">是否启用</label>
+								<div class="controls ">
+									<select class="span6 m-wrap" name="disabled">
+										<option value="0">启用</option>
+										<option value="1">禁用</option>
 									</select>
 								</div>
 							</div>

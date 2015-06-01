@@ -116,7 +116,7 @@
 	<select id="selectByUsername" resultMap="AccountMap">
 		select *
 		from t_account
-		where 1=1 and username=#{username}
+		where 1=1 and username=#{username} and disabled=0
 	</select>
 	<select id="listPage" resultMap="AccountMap"
 		parameterType="com.yang.spinach.account.entity.Account">
@@ -155,6 +155,6 @@
 		rs,t_resources s
 		where a.id=r.user_id and r.role_id=rs.role_id and
 		rs.resources_id=s.id
-		and a.username=#{username}
+		and a.username=#{username} and a.disabled=0
 	</select>
 </mapper> 

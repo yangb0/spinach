@@ -55,7 +55,7 @@
 	<script type="text/javascript">
 		var callback = function(data) {
 			if (data.status == "0") {
-				window.location.href = path + "/index";
+				window.location.href = "${path}/index";
 			} else {
 				$('.alert-error', $('.login-form')).find("span").html(data.msg);
 				$('.alert-error', $('.login-form')).show();

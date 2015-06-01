@@ -133,13 +133,51 @@
 		id=#{ id }
 	</select>
 
+	<select id="listPage" resultMap="ResourcesMap"
+		parameterType="com.yang.spinach.resources.entity.Resources">
+		select * from t_resources where 1=1
+		<if test="resource.id != null">
+		and	id=#{ resource.id }
+		</if>
+		<if test="resource.pid != null">
+		and	pid=#{ resource.pid }
+		</if>
+		<if test="resource.name != null">
+			and	name=#{ resource.name }
+		</if>
+		<if test="resource.type != null">
+			and	type=#{ resource.type }
+		</if>
+		<if test="resource.sort != null">
+			and	sort=#{ resource.sort }
+		</if>
+		<if test="resource.url != null">
+			and	url=#{ resource.url }
+		</if>
+		<if test="resource.permission != null">
+			and	permission=#{ resource.permission }
+		</if>
+		<if test="resource.icon != null">
+			and	icon=#{ resource.icon }
+		</if>
+		<if test="resource.state != null">
+			and	state=#{ resource.state }
+		</if>
+		<if test="resource.description != null">
+			and	description=#{ resource.description }
+		</if>
+	</select>
+
 	<select id="findByAccountId" resultMap="ResourcesMap"
 		parameterType="java.lang.Long">
 		select DISTINCT p.* from t_resources p
-		INNER JOIN t_role_resources rp on p.ID=rp.resources_ID
-		INNER JOIN t_role r ON r.id=rp.ROLE_ID
+		INNER JOIN
+		t_role_resources rp on p.ID=rp.resources_ID
+		INNER JOIN t_role r ON
+		r.id=rp.ROLE_ID
 		INNER JOIN t_account_role ur ON ur.ROLE_ID =rp.ROLE_ID
 		INNER JOIN t_account u ON u.id = ur.USER_ID
-		where u.id=#{id} order by p.sort
+		where u.id=#{id} and
+		u.disabled=0 order by p.sort
 	</select>
 </mapper>

@@ -1,0 +1,71 @@
+ <@h.head title="角色列表 | spinach"/> <@h.menu home="s" firMenu="系统管理"
+secMenu="角色管理"/>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h3 class="page-title">
+					角色管理 <small>角色列表</small>
+				</h3>
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="${path}/index">首页</a> <i
+						class="icon-angle-right"></i></li>
+					<li><a href="#">系统管理</a> <i class="icon-angle-right"></i></li>
+					<li><a href="${path}/role/list">角色管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- BEGIN PAGE CONTENT-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+				<div class="portlet box blue">
+					<@h.tools title="角色列表"/>
+					<div class="portlet-body">
+						<div class="clearfix">
+							<div class="btn-group">
+								<div class="span6">
+									<@shiro.hasPermission name="sys:role:add"> <a
+										id="sample_editable_1_new" class="btn green"
+										href="${path}/role/info/0"> 新增角色<i class="icon-plus"></i>
+									</a> </@shiro.hasPermission>
+								</div>
+							</div>
+						</div>
+						<table class="table table-striped table-hover table-bordered"
+							id="sample_editable_1">
+							<thead>
+								<tr>
+									<th>角色名</th>
+									<th>编码</th>
+									<th>描述</th>
+									<th>排序</th>
+									<th>是否启用</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<#list list as u>
+								<tr class="">
+									<td>${(u.name)!""}</td>
+									<td>${(u.roleCode)!""}</td>
+									<td>${(u.description)!""}</td>
+									<td class="center">${(u.sort)!""}</td>
+									<td>${(u.disabled==0)?string("启用","禁用")}</td>
+									<td><a class="delete" href="${path}/role/info/${(u.id)!0}">修改</a></td>
+								</tr>
+								</#list>
+							</tbody>
+						</table>
+						<@h.page />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT -->
+	</div>
+</div>
+</div>
+<@h.foot />
+</body>
+</html>

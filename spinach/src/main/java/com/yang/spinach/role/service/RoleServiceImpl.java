@@ -1,6 +1,9 @@
 package com.yang.spinach.role.service;
 
 
+import java.util.List;
+
+import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.role.entity.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,12 @@ public class RoleServiceImpl implements RoleService {
     @Override
 	public Role selectRoleById(Object id) throws Exception{
 	 return roleDao.selectRoleById(id);
+	}
+
+
+	@Override
+	public List<Role> listPage(Role role, Pagination pagination) {
+		return roleDao.listPage(role, pagination);
 	}
 	
 
