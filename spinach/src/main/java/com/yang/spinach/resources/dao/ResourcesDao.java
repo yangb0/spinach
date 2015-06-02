@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.resources.entity.Resources;
 
 /**
@@ -39,6 +38,5 @@ public interface ResourcesDao {
 
 	List<Resources> findByAccountId(Long id) throws Exception;
 
-	List<Resources> listPage(@Param("resource") Resources resource,
-			@Param("pagination") Pagination pagination);
+	List<Resources> list(@Param("resource") Resources resource);
 }

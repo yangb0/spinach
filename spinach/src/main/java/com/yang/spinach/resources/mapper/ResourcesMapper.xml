@@ -133,7 +133,7 @@
 		id=#{ id }
 	</select>
 
-	<select id="listPage" resultMap="ResourcesMap"
+	<select id="list" resultMap="ResourcesMap"
 		parameterType="com.yang.spinach.resources.entity.Resources">
 		select * from t_resources where 1=1
 		<if test="resource.id != null">

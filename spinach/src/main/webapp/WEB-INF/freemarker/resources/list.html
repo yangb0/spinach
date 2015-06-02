@@ -1,0 +1,81 @@
+ <@h.head title="菜单列表 | spinach"/> <@h.menu home="s" firMenu="系统管理"
+secMenu="菜单管理"/>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h3 class="page-title">
+					菜单管理 <small>菜单列表</small>
+				</h3>
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="${path}/index">首页</a> <i
+						class="icon-angle-right"></i></li>
+					<li><a href="#">系统管理</a> <i class="icon-angle-right"></i></li>
+					<li><a href="${path}/user/list">菜单管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- BEGIN PAGE CONTENT-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+				<div class="portlet box blue">
+					<@h.tools title="菜单列表"/>
+					<div class="portlet-body">
+						<div class="portlet-body ">
+							<div class="dd" id="nestable_list_1">
+								<ol class="dd-list">
+									<li class="dd-item" data-id="2">
+											<table class="table table-striped table-hover table-bordered " style="margin-bottom: 0px;">
+											<tr>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											</tr>
+											</table>
+										<ol class="dd-list">
+											<li class="dd-item" data-id="3">
+												<table class="table table-striped table-hover table-bordered">
+											<tr>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											<td>ss</td>
+											</tr>
+											</table>
+											</li>
+											<li class="dd-item" data-id="5">
+												<div class="dd-handle">Item 5</div>
+												<ol class="dd-list">
+													<li class="dd-item" data-id="6">
+														<div class="dd-handle">Item 6</div>
+													</li>
+													<li class="dd-item" data-id="7">
+														<div class="dd-handle">Item 7</div>
+													</li>
+													<li class="dd-item" data-id="8">
+														<div class="dd-handle">Item 8</div>
+													</li>
+												</ol>
+											</li>
+										</ol>
+									</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT -->
+	</div>
+</div>
+</div>
+<@h.foot />
+<link rel="stylesheet" type="text/css"
+	href="/static/css/jquery.nestable.css" />
+</body>
+</html>

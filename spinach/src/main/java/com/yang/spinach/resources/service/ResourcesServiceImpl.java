@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.resources.dao.ResourcesDao;
 import com.yang.spinach.resources.entity.Resources;
 
@@ -41,8 +40,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 	}
 
 	@Override
-	public List<Resources> listPage(Resources resource, Pagination pagination) {
-		return resourcesDao.listPage(resource, pagination);
+	public List<Resources> list(Resources resource) {
+		return resourcesDao.list(resource);
 	}
 
 }

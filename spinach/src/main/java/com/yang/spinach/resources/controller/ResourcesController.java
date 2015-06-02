@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yang.spinach.frame.filter.WebContext;
 import com.yang.spinach.frame.shiro.ShiroSessionUtils;
-import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.resources.entity.Resources;
 import com.yang.spinach.resources.service.ResourcesService;
 
@@ -38,10 +37,9 @@ public class ResourcesController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Resources resource, Pagination pagination) {
-		List<Resources> list = resourcesService.listPage(resource, pagination);
+	public String list(Resources resource) {
+		List<Resources> list = resourcesService.list(resource);
 		WebContext.setAttribute("list", list);
-		WebContext.setAttribute("pagination", pagination);
-		return "/user/list";
+		return "/resources/list";
 	}
 }

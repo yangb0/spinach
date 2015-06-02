@@ -2,7 +2,6 @@ package com.yang.spinach.resources.service;
 
 import java.util.List;
 
-import com.yang.spinach.frame.utils.page.Pagination;
 import com.yang.spinach.resources.entity.Resources;
 
 /**
@@ -42,5 +41,5 @@ public interface ResourcesService {
 	 */
 	List<Resources> findByAccountId(Long id) throws Exception;
 
-	List<Resources> listPage(Resources resource, Pagination pagination);
+	List<Resources> list(Resources resource);
 }
