@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <@h.head />
+
+
+<style type="text/css">
+body {
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
+</head>
+<body>
+	<form class="form-inline definewidth m20" action="${path}/user/list" method="get" id="listForm">
+		用户名称： <input type="text" name="keyWords" id="username"
+			class="abc input-default" placeholder="用户名/昵称" value="${(RequestParameters['keyWords'])!''}">&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">查询</button>
+		&nbsp;&nbsp; <@shiro.hasPermission name="sys:user:add">
+		<a class="btn btn-success" href="${path}/user/add">新增用户</a>
+		</@shiro.hasPermission>
+	</form>
+	<table class="table table-bordered table-hover definewidth m10">
+		<thead>
+			<tr>
+				<th>用户名</th>
+				<th>昵称</th>
+				<th>电话</th>
+				<th>邮箱</th>
+				<th>最后登陆时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list list as u>
+			<tr class="">
+				<td>${(u.username)!""}</td>
+				<td>${(u.nickName)!""}</td>
+				<td>${(u.mobile)!""}</td>
+				<td class="center">${(u.email)!""}</td>
+				<td>${u.loginTime?string("yyyy-MM-dd HH:MM:ss")}</td>
+				<td><a class="edit" href="${path}/user/add?id=${(u.id)!0}">修改</a></td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+	<@h.page /> <@h.foot />
+</body>
+</html>

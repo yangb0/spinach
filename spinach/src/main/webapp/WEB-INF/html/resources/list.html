@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <@h.head />
+
+
+<style type="text/css">
+body {
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+tr {
+	cursor: pointer; 
+}
+</style>
+</head>
+<body>
+	<form class="form-inline definewidth m20" action="index.html"
+		method="get">
+		菜单名称： <input type="text" name="menuname" id="menuname"
+			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">查询</button>
+		&nbsp;&nbsp;
+		<button type="button" class="btn btn-success" id="addnew">新增菜单</button>
+	</form>
+	<table class="table table-bordered table-hover definewidth m10">
+		<thead>
+			<tr>
+				<th>菜单标题</th>
+				<th>菜单类型</th>
+				<th>描述</th>
+				<th>菜单编码</th>
+				<th>url</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<#list list as u> <#if u.pid==0>
+		<tr pid="${u.pid}" ids="${u.id}">
+			<td colspan="5">${u.name}</td>
+			<td><a href="edit.html">编辑</a></td>
+		</tr>
+		</#if> <#list list as r> <#if r.pid==u.id && r.type==0>
+		<tr  pid="${r.pid}" ids="${r.id}">
+			<td style="padding-left: 30px;">${r.name}</td>
+			<td>${(r.type==0)?string('菜单','按钮')}</td>
+			<td>${r.description}</td>
+			<td>${r.permission}</td>
+			<td>${r.url}</td>
+			<td><a href="edit.html">编辑</a></td>
+		</tr>
+		<#list list as rr> <#if rr.pid==r.id >
+		<tr pid="${rr.pid}" ids="${rr.id}" rid="${u.id}">
+			<td style="padding-left: 50px;">${rr.name}</td>
+			<td>${(rr.type==0)?string('菜单','按钮')}</td>
+			<td>${rr.description}</td>
+			<td>${rr.permission}</td>
+			<td>${rr.url}</td>
+			<td><a href="edit.html">编辑</a></td>
+		</tr>
+		</#if> </#list> </#if> </#list> </#list>
+	</table>
+	<@h.foot />
+	<script type="text/javascript">
+		$("[pid]").click(function(){
+			var pid = $(this).attr("pid");
+			var ids=$(this).attr("ids");
+			var flag = $(this).attr("flag");
+				if(flag==1){
+					$(this).removeAttr("flag");
+					$("[pid='"+ids+"']").show().removeAttr("flag");
+					$("[rid='"+ids+"']").show();
+				}else{
+					$(this).attr("flag","1");
+					$("[pid='"+ids+"']").hide().attr("flag","1");
+					$("[rid='"+ids+"']").hide();
+				}
+		});
+	</script>
+</body>
+</html>

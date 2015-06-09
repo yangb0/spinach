@@ -20,7 +20,7 @@ public class Pagination implements Serializable {
 	public static final int DEFAULT_CURRENT_SKIP = 1;
 	public static final int MAX_PAGE_SIZE = 200;
 
-	private int rows = DEFAULT_SKIP_SIZE; // 每页显示记录数
+	private int rows = 10; // 每页显示记录数
 	private int total; // 总条目数
 	// private int totalResult; //总记录数
 	private int totalPage; // 总页数

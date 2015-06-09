@@ -62,12 +62,12 @@ public class AccountController {
 	}
 
 	@RequiresPermissions("sys:user:add")
-	@RequestMapping("/info/{userId}")
-	public String add(@PathVariable Long userId) {
+	@RequestMapping("/add")
+	public String add(Long id) {
 		List<Dict> list = dictService.selectByColumn(Const.USER_TYPR);
 		WebContext.setAttribute("list", list);
-		WebContext.setAttribute("userId", userId);
-		return "/user/info";
+		WebContext.setAttribute("id", id);
+		return "/user/add";
 	}
 
 	@RequestMapping("/save")
@@ -85,7 +85,7 @@ public class AccountController {
 					account.setPassword(MD5.digest(account.getPassword()));
 					i = accountService.saveAccount(account);
 				}
-				if(i>0){
+				if (i > 0) {
 					map.put("status", 0);
 					map.put("msg", "保存成功");
 				}

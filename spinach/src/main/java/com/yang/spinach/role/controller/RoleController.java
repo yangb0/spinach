@@ -54,10 +54,10 @@ public class RoleController {
 	}
 
 	@RequiresPermissions("sys:user:add")
-	@RequestMapping("/info/{id}")
-	public String add(@PathVariable Long id) {
+	@RequestMapping("/add")
+	public String add( Long id) {
 		WebContext.setAttribute("id", id);
-		return "/role/info";
+		return "/role/add";
 	}
 
 	@RequestMapping("/save")

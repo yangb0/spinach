@@ -14,7 +14,7 @@
 
 	<bean id="freeMarkerConfigurer"
 		class="com.yang.spinach.frame.shiro.ShiroTagFreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/WEB-INF/freemarker/" />
+		<property name="templateLoaderPath" value="/WEB-INF/html/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
 	</bean>

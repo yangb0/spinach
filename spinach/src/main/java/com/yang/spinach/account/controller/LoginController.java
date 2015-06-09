@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,10 +36,14 @@ import com.yang.spinach.frame.filter.WebContext;
 import com.yang.spinach.frame.shiro.ShiroSessionUtils;
 import com.yang.spinach.frame.utils.CaptchaUtils;
 import com.yang.spinach.frame.utils.Const;
+import com.yang.spinach.resources.service.ResourcesService;
 
 @Controller
 public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
+
+	@Resource
+	ResourcesService resourcesService;
 
 	/**
 	 * 登陆页的映射
@@ -61,6 +66,14 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/index")
 	public String index(Model model) throws Exception {
+		try {
+			Account a = ShiroSessionUtils.getLoginAccount();
+			model.addAttribute("user", a);
+			model.addAttribute("resources",
+					resourcesService.findByAccountId(a.getId()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "/index";
 	}
 
@@ -147,12 +160,12 @@ public class LoginController {
 	 * @param request
 	 */
 	@RequestMapping(value = "/logout")
-	public void logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject != null) {
 			subject.logout();
 		}
-		// request.getSession().invalidate();
+		 return "redirect:/";
 	}
 
 	/**
