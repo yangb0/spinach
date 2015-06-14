@@ -23,6 +23,7 @@
 		<druid.version>1.0.2</druid.version>
 		<shiro.version>1.2.3</shiro.version>
 		<freemarker.version>2.3.20</freemarker.version>
+		<logback.version>1.0.13</logback.version>
 	</properties>
 	<dependencies>
 		<!-- 测试依赖jar包 -->
@@ -200,11 +201,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1-b08</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -330,6 +326,16 @@
 			<groupId>cn.dreampie</groupId>
 			<artifactId>jfinal-shiro-freemarker</artifactId>
 			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 	</dependencies>
 

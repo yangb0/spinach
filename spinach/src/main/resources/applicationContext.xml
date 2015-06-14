@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-	 xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -56,14 +56,14 @@
 		<property name="filters" value="${druid.filters}" />
 		<property name="proxyFilters">
 			<list>
-				<ref bean="log-filter" />
+				<ref bean="stat-filter" />
 			</list>
 		</property>
 	</bean>
-	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
-		<property name="statementExecutableSqlLogEnable" value="true" />
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<property name="slowSqlMillis" value="3000" />
+		<property name="logSlowSql" value="true" />
 	</bean>
-
 
 	<bean id="transactionManager" name="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

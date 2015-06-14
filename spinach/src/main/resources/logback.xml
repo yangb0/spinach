@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss}  %-5level %logger{36} -%L %n%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/spinach.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/spinach.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss}  %-5level %logger{36}  - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+ 	<logger name="org.springframework" level="ERROR"/>
+ 	<logger name="org.apache.shiro" level="ERROR"/>
+ 	<logger name="com.alibaba" level="ERROR"/>
+	<logger name="net.sf.ehcache" level="ERROR"/>
+ 	<logger name="org.apache.commons" level="ERROR"/>
+ 	<logger name="freemarker" level="ERROR"/>
+ 	<logger name="net.bull.javamelody" level="ERROR"/> 
+ 	<logger name="org.jboss.logging" level="ERROR"/> 
+ 	<logger name="org.quartz" level="ERROR"/> 
+ 	<logger name="org.hibernate.validator" level="ERROR"/> 
+ 	<logger name="org.eclipse" level="ERROR"/> 
+
+	<root level="DEBUG">
+		<appender-ref ref="console" />
+		<!-- <appender-ref ref="rollingFile" /> -->
+	</root>
+</configuration>
