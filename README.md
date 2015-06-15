@@ -16,7 +16,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * 持久层框架：MyBatis 3.1.1
 * 数据库连接池：Alibaba Druid 1.0
 * 缓存框架：Ehcache、Redis
-* 日志管理：SLF4J 1.7、Log4j
+* 日志管理：SLF4J 1.7、logback
 * 工具类：Apache Commons、Jackson 2.2、Xstream 1.4、POI 3.9
 
 2、前端
