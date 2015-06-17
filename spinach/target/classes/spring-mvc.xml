@@ -42,6 +42,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 		<property name="contentType" value="text/html;charset=UTF-8" />
 		<property name="order" value="0" />
 	</bean>
+	
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -53,4 +54,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 		</property>
 	</bean>
 	<import resource="classpath:spring-mvc-shiro.xml" />
+	<import resource="classpath:freemarker/spring-freemarker.xml" />
 </beans>
