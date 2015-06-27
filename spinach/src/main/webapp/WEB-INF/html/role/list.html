@@ -48,7 +48,11 @@ body {
 				<td>${(u.description)!""}</td>
 				<td class="center">${(u.sort)!""}</td>
 				<td>${(u.disabled==0)?string("启用","禁用")}</td>
-				<td><a class="delete" href="${path}/role/add?id=${(u.id)!0}">修改</a></td>
+				<td>
+				<@shiro.hasPermission name="sys:role:update">
+				<a class="edit" href="${path}/role/add?id=${(u.id)!0}">修改</a>
+				</@shiro.hasPermission>
+				</td>
 			</tr>
 			</#list>
 		</tbody>

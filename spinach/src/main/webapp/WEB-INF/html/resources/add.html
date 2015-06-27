@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <@h.head />
+<style type="text/css">
+body {
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
+</head>
+<body>
+	<form action="${path}/resources/save" id="fm" method="post"
+		class="definewidth m20">
+		<div style="text-align: center;" id="errorMsg"></div>
+		<input type="hidden" id="id" value="" name="id">
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<td width="10%" class="tableleft">上级菜单</td>
+				<td><select class="span6 m-wrap" name="pid">
+					<#list list as r>
+							<option value="${(r.id)!''}">${(r.name)!""}</option>
+					</#list>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">名称<span class="required">*</span></td>
+				<td><input type="text" name="name" datatype="*"
+										nullmsg="请输入名称！" /> <span class="Validform_checktip">请输入名称！</span></td>
+			</tr>
+			<tr>
+				<td class="tableleft">菜单类型<span class="required">*</span></td>
+				<td><select class="span6 m-wrap" name="type">
+						<option value="0">菜单</option>
+						<option value="1">按钮</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td class="tableleft">描述</td>
+				<td><input type="text" name="description"  /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">地址</td>
+				<td><input type="text" name="url"  /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">排序</td>
+				<td><input type="text" name="sort" /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">菜单编码<span class="required">*</span></td>
+				<td><input type="text" name="permission" datatype="*"
+										nullmsg="请输入菜单编码！"  /><span class="Validform_checktip">请输入菜单编码！</span></td>
+			</tr>
+			<tr>
+				<td class="tableleft">图标</td>
+				<td><input type="text" name="icon"  /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">状态</td>
+				<td><select class="span6 m-wrap" name="disabled">
+						<option value="0">启用</option>
+						<option value="1">禁用</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td class="tableleft"></td>
+				<td>
+					<button type="submit" class="btn btn-primary" type="button">保存</button>
+					&nbsp;&nbsp;
+					<button type="button" class="btn btn-success" name="backid"
+						id="backid">返回列表</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<@h.foot />
+	<script type="text/javascript">
+		$(function() {
+			var id = GetQueryString("id");
+			if (id) {
+				$("#id").val(id);
+				$.get("${path}/resources/getById/" + $("#id").val(), function(data) {
+					var data = eval('(' + data + ')');
+					$("#fm").jsonData(data.data);
+					$(".disabled").attr("readOnly", "readOnly");
+				})
+			}
+			;
+			$('#backid').click(function() {
+				window.location.href = "${path}/resources/list";
+			});
+		});
+		var callback = function(data) {
+			if (data.status == "0") {
+				window.location.href = "${path}/resources/list";
+			} else {
+				$("#errorMsg").html(data.msg).show();
+			}
+		}
+		$("#fm").validFrom(callback);
+	</script>
+</body>
+</html>

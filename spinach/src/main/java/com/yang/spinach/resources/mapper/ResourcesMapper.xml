@@ -11,7 +11,7 @@
 		<result column="url" property="url" />
 		<result column="permission" property="permission" />
 		<result column="icon" property="icon" />
-		<result column="state" property="state" />
+		<result column="disabled" property="disabled" />
 		<result column="description" property="description" />
 	</resultMap>
 
@@ -44,8 +44,8 @@
 			<if test="icon != null">
 				icon,
 			</if>
-			<if test="state != null">
-				state,
+			<if test="disabled != null">
+				disabled,
 			</if>
 			<if test="description != null">
 				description,
@@ -76,8 +76,8 @@
 			<if test="icon != null">
 				#{icon},
 			</if>
-			<if test="state != null">
-				#{state},
+			<if test="disabled != null">
+				#{disabled},
 			</if>
 			<if test="description != null">
 				#{description},
@@ -113,8 +113,8 @@
 			<if test="icon != null">
 				icon=#{ icon },
 			</if>
-			<if test="state != null">
-				state=#{ state },
+			<if test="disabled != null">
+				disabled=#{ disabled },
 			</if>
 			<if test="description != null">
 				description=#{ description },
@@ -160,8 +160,8 @@
 		<if test="resource.icon != null">
 			and	icon=#{ resource.icon }
 		</if>
-		<if test="resource.state != null">
-			and	state=#{ resource.state }
+		<if test="resource.disabled != null">
+			and	disabled=#{ resource.disabled }
 		</if>
 		<if test="resource.description != null">
 			and	description=#{ resource.description }

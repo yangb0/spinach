@@ -47,7 +47,7 @@ public class Resources implements Serializable {
 	/**
 	 * state
 	 */
-	private String state;
+	private Integer disabled;
 	/**
 	 * description
 	 */
@@ -65,7 +65,7 @@ public class Resources implements Serializable {
 				.append(getSort()).append(",").append("url=").append(getUrl())
 				.append(",").append("permission=").append(getPermission())
 				.append(",").append("icon=").append(getIcon()).append(",")
-				.append("state=").append(getState()).append(",")
+				.append("disabled=").append(getDisabled()).append(",")
 				.append("description=").append(getDescription()).append(",")
 				.toString();
 	}
@@ -134,13 +134,15 @@ public class Resources implements Serializable {
 		this.icon = icon;
 	}
 
-	public String getState() {
-		return state;
+
+	public Integer getDisabled() {
+		return disabled;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setDisabled(Integer disabled) {
+		this.disabled = disabled;
 	}
+
 
 	public String getDescription() {
 		return description;
