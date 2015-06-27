@@ -133,6 +133,7 @@ public class LoginController {
 		} catch (LockedAccountException lae) {
 			map.put("msg", "账号被锁定!");
 		} catch (Exception e) {
+			e.printStackTrace();
 			map.put("msg", "未知错误,请联系管理员.");
 		}
 		return map;

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.eclipse.jetty.util.security.Credential.MD5;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,7 +83,7 @@ public class AccountController {
 				if (account.getId() != null && account.getId() != 0) {
 					i = accountService.updateAccountById(account);
 				} else {
-					account.setPassword(MD5.digest(account.getPassword()));
+					account.setPassword(new Md5Hash(account.getPassword()).toString());
 					i = accountService.saveAccount(account);
 				}
 				if (i > 0) {
