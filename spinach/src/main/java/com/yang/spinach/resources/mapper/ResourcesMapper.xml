@@ -178,6 +178,6 @@
 		INNER JOIN t_account_role ur ON ur.ROLE_ID =rp.ROLE_ID
 		INNER JOIN t_account u ON u.id = ur.USER_ID
 		where u.id=#{id} and
-		u.disabled=0 order by p.sort
+		u.disabled=0 and p.disabled=0 order by p.sort
 	</select>
 </mapper>
