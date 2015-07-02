@@ -43,5 +43,8 @@ public class ResourcesServiceImpl implements ResourcesService {
 	public List<Resources> list(Resources resource) {
 		return resourcesDao.list(resource);
 	}
+	public List<Resources> findByRoleId(Long id) throws Exception{
+		return resourcesDao.findByRoleId(id);
+	}
 
 }

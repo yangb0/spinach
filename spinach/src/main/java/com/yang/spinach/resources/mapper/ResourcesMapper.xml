@@ -180,4 +180,15 @@
 		where u.id=#{id} and
 		u.disabled=0 and p.disabled=0 order by p.sort
 	</select>
+	
+	<select id="findByRoleId" resultMap="ResourcesMap"
+		parameterType="java.lang.Long">
+		select DISTINCT p.* from t_resources p
+		INNER JOIN
+		t_role_resources rp on p.ID=rp.resources_ID
+		INNER JOIN t_role r ON
+		r.id=rp.ROLE_ID
+		where r.id=#{id} and p.disabled=0 order by p.sort
+		
+	</select>
 </mapper>

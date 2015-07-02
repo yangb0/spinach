@@ -114,4 +114,35 @@
 		</if>
 		order by sort
 	</select>
+
+	<delete id="delPermBYId" parameterType="java.lang.Long">
+		delete from
+		t_role_resources where role_id=#{id}
+	</delete>
+
+	<update id="bathSavePerm" parameterType="java.util.Map">
+		insert into t_role_resources (role_id,resources_id)
+		values
+		<foreach collection="rids" item="item" index="index"
+			separator=",">
+			(#{id},#{item})
+		</foreach>
+	</update>
+	<select id="findByAccountId" resultMap="RoleMap" parameterType="java.lang.Long">
+				select * from t_role r inner join t_account_role ar
+			on r.id=ar.role_id where r.disabled=0 and ar.user_id=#{id}
+	</select>
+	
+	<delete id="delRoleBYId" parameterType="java.lang.Long">
+		delete from
+		t_account_role where user_id=#{id}
+	</delete>
+	<update id="bathSaveRole" parameterType="java.util.Map">
+		insert into t_account_role (user_id,role_id)
+		values
+		<foreach collection="rids" item="item" index="index"
+			separator=",">
+			(#{id},#{item})
+		</foreach>
+	</update>
 </mapper>

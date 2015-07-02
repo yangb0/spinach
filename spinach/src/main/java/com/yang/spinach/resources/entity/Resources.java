@@ -2,6 +2,9 @@ package com.yang.spinach.resources.entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * 
  * @author <Auto generate>
@@ -52,10 +55,19 @@ public class Resources implements Serializable {
 	 * description
 	 */
 	private String description;
+	private String checked;// 是否被选中
 
 	// columns END 数据库字段结束
 
 	// get and set
+
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 
 	public String toString() {
 		return new StringBuffer().append("id=").append(getId()).append(",")
@@ -134,7 +146,6 @@ public class Resources implements Serializable {
 		this.icon = icon;
 	}
 
-
 	public Integer getDisabled() {
 		return disabled;
 	}
@@ -143,13 +154,22 @@ public class Resources implements Serializable {
 		this.disabled = disabled;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 }

@@ -3,6 +3,8 @@ package com.yang.spinach.role.entity;
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * 
@@ -40,6 +42,7 @@ public class Role implements Serializable {
 	private Integer disabled;
 
 	// columns END 数据库字段结束
+	private String checked;// 是否被选中
 
 	// get and set
 	public void setId(Long id) {
@@ -104,6 +107,14 @@ public class Role implements Serializable {
 		this.disabled = disabled;
 	}
 
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
 	public String toString() {
 		return new StringBuffer().append("id=").append(getId()).append(",")
 				.append("name=").append(getName()).append(",")
@@ -112,6 +123,16 @@ public class Role implements Serializable {
 				.append("sort=").append(getSort()).append(",")
 				.append("disabled=").append(getDisabled()).append(",")
 				.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ import com.yang.spinach.resources.service.ResourcesService;
 @Controller
 @RequestMapping(value = "/resources")
 public class ResourcesController {
-	@Autowired
+	@Resource
 	private ResourcesService resourcesService;
 
 	@ResponseBody
@@ -34,7 +36,7 @@ public class ResourcesController {
 	public List<Resources> currentResources() {
 		Long accountId = ShiroSessionUtils.getLoginAccount().getId();
 		try {
-			return resourcesService.findByAccountId(accountId);
+			return resourcesService.findByRoleId(accountId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -39,4 +39,6 @@ public interface ResourcesDao {
 	List<Resources> findByAccountId(Long id) throws Exception;
 
 	List<Resources> list(@Param("resource") Resources resource);
+	
+	List<Resources> findByRoleId(Long id)throws Exception;
 }

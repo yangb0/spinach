@@ -44,6 +44,36 @@ public class RoleServiceImpl implements RoleService {
 	public List<Role> listPage(Role role, Pagination pagination) {
 		return roleDao.listPage(role, pagination);
 	}
+
+
+	@Override
+	public Integer delPermBYId(Long id) {
+		return roleDao.delPermBYId(id);
+	}
+
+
+	@Override
+	public Integer bathSavePerm(Long[] rid, Long id) {
+		return roleDao.bathSavePerm(rid, id);
+	}
+
+
+	@Override
+	public List<Role> findByAccountId(Long id) {
+		return roleDao.findByAccountId(id);
+	}
+
+
+	@Override
+	public Integer delRoleBYId(Long id) {
+		return roleDao.delRoleBYId(id);
+	}
+
+
+	@Override
+	public Integer bathSaveRole(Long[] rid, Long id) {
+		return roleDao.bathSaveRole(rid,id);
+	}
 	
 
 

@@ -40,4 +40,28 @@ public interface RoleDao {
 	List<Role> listPage(@Param("role") Role role,
 			@Param("pagination") Pagination pagination);
 
+	/**
+	 * 根据角色id删除该角色所有权限
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Integer delPermBYId(Long id);
+
+
+	/**
+	 * 给角色设置权限
+	 * 
+	 * @param rid
+	 * @param id
+	 * @return
+	 */
+	public Integer bathSavePerm(@Param("rids") Long[] rid, @Param("id") Long id);
+
+	public Integer delRoleBYId(Long id);
+
+	public Integer bathSaveRole(@Param("rids") Long[] rid, @Param("id") Long id);
+
+	public List<Role> findByAccountId(Long id);
+
 }

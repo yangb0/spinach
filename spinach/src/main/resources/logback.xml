@@ -30,6 +30,6 @@
 
 	<root level="DEBUG">
 		<appender-ref ref="console" />
-		<!-- <appender-ref ref="rollingFile" /> -->
+		<appender-ref ref="rollingFile" />
 	</root>
 </configuration>

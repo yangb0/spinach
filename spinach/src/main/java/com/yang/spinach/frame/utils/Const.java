@@ -13,4 +13,6 @@ public class Const {
 	public static final String USER_TYPR = "user_type";
 	// 默认错误提示
 	public static final String DEFAULT_ERROR = "网络错误,请稍后重试!";
+	// 选中
+	public static final String CHECKED = "checked";
 }

@@ -41,5 +41,7 @@ public interface ResourcesService {
 	 */
 	List<Resources> findByAccountId(Long id) throws Exception;
 
-	List<Resources> list(Resources resource);
+	List<Resources> list(Resources resource) ;
+
+	public List<Resources> findByRoleId(Long id)throws Exception;
 }

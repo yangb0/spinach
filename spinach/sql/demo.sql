@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-06-28 00:19:40
+Date: 2015-07-02 23:49:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `t_account` (
   `disabled` int(2) NOT NULL DEFAULT '0' COMMENT '是否可用(0:可用 1:不可用)',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_account
@@ -41,6 +41,8 @@ INSERT INTO `t_account` VALUES ('2', 'user', 'user1', 'e10adc3949ba59abbe56e057f
 INSERT INTO `t_account` VALUES ('3', 'test', 'test', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '111@qq.com', '0', '2015-05-31 21:14:47', '0');
 INSERT INTO `t_account` VALUES ('5', 'test1', '1111', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '11@qq.com', '0', '2015-05-31 21:19:20', '0');
 INSERT INTO `t_account` VALUES ('6', 'abcd', 'qwer', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000001', 'qq@qq.com', '0', '2015-06-04 21:48:45', '0');
+INSERT INTO `t_account` VALUES ('8', '111111', '111111', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '1@1.com', '0', '2015-06-28 00:29:34', '0');
+INSERT INTO `t_account` VALUES ('9', '1231', '1233', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '1@1.cm', '0', '2015-06-28 00:34:33', '0');
 
 -- ----------------------------
 -- Table structure for t_account_role
@@ -53,12 +55,17 @@ CREATE TABLE `t_account_role` (
   PRIMARY KEY (`id`),
   KEY `FK_USER_ROL_REFERENCE_ROLE` (`role_id`) USING BTREE,
   KEY `FK_USER_ROL_REFERENCE_USERS` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='用户-角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='用户-角色关联表';
 
 -- ----------------------------
 -- Records of t_account_role
 -- ----------------------------
 INSERT INTO `t_account_role` VALUES ('1', '1', '1');
+INSERT INTO `t_account_role` VALUES ('37', '2', '1');
+INSERT INTO `t_account_role` VALUES ('38', '2', '2');
+INSERT INTO `t_account_role` VALUES ('39', '2', '4');
+INSERT INTO `t_account_role` VALUES ('40', '9', '5');
+INSERT INTO `t_account_role` VALUES ('41', '9', '6');
 
 -- ----------------------------
 -- Table structure for t_dict
@@ -121,7 +128,6 @@ INSERT INTO `t_resources` VALUES ('14', '24', '修改', '1', null, '', 'sys:perm
 INSERT INTO `t_resources` VALUES ('15', '24', '删除', '1', null, '', 'sys:perm:delete', '', '0', '菜单删除');
 INSERT INTO `t_resources` VALUES ('16', '2', '查看', '1', null, '', 'sys:role:view', '', '0', '角色查看');
 INSERT INTO `t_resources` VALUES ('17', '3', '查看', '1', null, '', 'sys:user:view', '', '0', '用户查看');
-INSERT INTO `t_resources` VALUES ('18', '3', '查看权限', '1', null, '', 'sys:perm:view', '', '0', '权限查看');
 INSERT INTO `t_resources` VALUES ('19', '3', '查看用户角色', '1', null, '', 'sys:user:roleView', '', '0', '查看用户角色');
 INSERT INTO `t_resources` VALUES ('22', '2', '查看角色权限', '1', null, '', 'sys:role:permView', '', '0', '查看角色拥有的权限');
 INSERT INTO `t_resources` VALUES ('23', '11', '定时任务管理', '0', '9', '', 'monitoring:task', 'icon-hamburg-full-time', '0', '定时任务管理，支持集群');
@@ -164,7 +170,7 @@ CREATE TABLE `t_role_resources` (
   PRIMARY KEY (`id`),
   KEY `FK_ROLE_PER_REFERENCE_PERMISSI` (`resources_id`) USING BTREE,
   KEY `FK_ROLE_PER_REFERENCE_ROLE` (`role_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='资源-角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='资源-角色关联表';
 
 -- ----------------------------
 -- Records of t_role_resources
@@ -206,3 +212,9 @@ INSERT INTO `t_role_resources` VALUES ('34', '1', '34');
 INSERT INTO `t_role_resources` VALUES ('35', '1', '35');
 INSERT INTO `t_role_resources` VALUES ('36', '1', '36');
 INSERT INTO `t_role_resources` VALUES ('37', '1', '37');
+INSERT INTO `t_role_resources` VALUES ('38', '2', '1');
+INSERT INTO `t_role_resources` VALUES ('39', '2', '2');
+INSERT INTO `t_role_resources` VALUES ('40', '2', '4');
+INSERT INTO `t_role_resources` VALUES ('41', '2', '1');
+INSERT INTO `t_role_resources` VALUES ('42', '2', '2');
+INSERT INTO `t_role_resources` VALUES ('43', '2', '4');

@@ -50,7 +50,10 @@ body {
 				<td>${(u.disabled==0)?string("启用","禁用")}</td>
 				<td>
 				<@shiro.hasPermission name="sys:role:update">
-				<a class="edit" href="${path}/role/add?id=${(u.id)!0}">修改</a>
+				<a class="edit" href="${path}/role/add?id=${(u.id)!''}">修改</a> 
+				</@shiro.hasPermission>
+				<@shiro.hasPermission name="sys:role:permView">
+				&nbsp;&nbsp;<a class="edit" href="${path}/role/editPerm?id=${(u.id)!''}">修改权限</a>
 				</@shiro.hasPermission>
 				</td>
 			</tr>
