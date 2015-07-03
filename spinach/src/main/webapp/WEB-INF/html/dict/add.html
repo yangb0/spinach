@@ -22,24 +22,33 @@ body {
 </style>
 </head>
 <body>
-	<form action="${path}/role/save" id="fm" method="post"
+	<form action="${path}/dict/save" id="fm" method="post"
 		class="definewidth m20">
 		<div style="text-align: center;" id="errorMsg"></div>
 		<input type="hidden" id="id" value="${id!0}" name="id">
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
-				<td width="10%" class="tableleft">角色名<span class="required">*</span></td>
-				<td><input type="text" name="name" datatype="*"
-										nullmsg="请输入角色名！" /> <span class="Validform_checktip">请输入角色名！</span></td>
+				<td width="10%" class="tableleft">字段<span class="required">*</span></td>
+				<td><input type="text" name="targetColumn" datatype="*"
+										nullmsg="请输入表字段！" /> <span class="Validform_checktip">请输入表字段！</span></td>
 			</tr>
 			<tr>
-				<td class="tableleft">角色编码<span class="required">*</span></td>
-				<td><input type="text" name="roleCode" datatype="*" nullmsg="请输入角色编码！" /> <span
-										class="Validform_checktip">请输入角色编码</span></td>
+				<td class="tableleft">显示内容<span class="required">*</span></td>
+				<td><input type="text" name="label" datatype="*" nullmsg="请输入显示内容！" /> <span
+										class="Validform_checktip">请输入显示内容</span></td>
 			</tr>
 			<tr>
-				<td class="tableleft">角色描述</td>
-				<td><input type="text" name="description"  /></td>
+				<td class="tableleft">值</td>
+				<td><input type="text" name="value"  datatype="n"/><span
+										class="Validform_checktip">请输入对应值！</span></td>
+			</tr>
+			<tr>
+				<td class="tableleft">描述</td>
+				<td><input type="text" name="descrption"  /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">备注</td>
+				<td><input type="text" name="remark" /></td>
 			</tr>
 			<tr>
 				<td class="tableleft">排序</td>
@@ -57,8 +66,7 @@ body {
 				<td>
 					<button type="submit" class="btn btn-primary" type="button">保存</button>
 					&nbsp;&nbsp;
-					<button type="button" class="btn btn-success" name="backid"
-						id="backid">返回列表</button>
+					<button type="button" class="btn btn-success" onclick="javascript:history.go(-1)">返回列表</button>
 				</td>
 			</tr>
 		</table>
@@ -67,20 +75,15 @@ body {
 	<script type="text/javascript">
 		$(function() {
 			if ($("#id").val() != 0) {
-				$.get("${path}/role/getById/" + $("#id").val(), function(data) {
+				$.get("${path}/dict/getById/" + $("#id").val(), function(data) {
 					var data = eval('(' + data + ')');
 					$("#fm").jsonData(data.data);
-					$(".disabled").attr("readOnly", "readOnly");
 				})
-			}
-			;
-			$('#backid').click(function() {
-				window.location.href = "${path}/role/list";
-			});
+			};
 		});
 		var callback = function(data) {
 			if (data.status == "0") {
-				window.location.href = "${path}/role/list";
+				window.location.href = "${path}/dict/list";
 			} else {
 				$("#errorMsg").html(data.msg).show();
 			}

@@ -58,7 +58,7 @@ public class RoleController {
 		return map;
 	}
 
-	@RequiresPermissions("sys:user:add")
+	@RequiresPermissions("sys:role:add")
 	@RequestMapping("/add")
 	public String add(Long id) {
 		WebContext.setAttribute("id", id);

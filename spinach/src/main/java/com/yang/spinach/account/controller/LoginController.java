@@ -166,7 +166,7 @@ public class LoginController {
 		if (subject != null) {
 			subject.logout();
 		}
-		 return "redirect:/";
+		 return "/login";
 	}
 
 	/**

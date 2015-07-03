@@ -90,6 +90,7 @@
 	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
 		<constructor-arg>
 			<value>
+				/login=anon
 				/static/** = anon
 				/account/get = anon
 				/login.json=anon

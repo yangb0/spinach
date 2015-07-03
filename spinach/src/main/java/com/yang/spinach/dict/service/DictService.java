@@ -3,6 +3,7 @@ package com.yang.spinach.dict.service;
 import java.util.List;
 
 import com.yang.spinach.dict.entity.Dict;
+import com.yang.spinach.frame.utils.page.Pagination;
 
 /**
  * 
@@ -39,5 +40,7 @@ public interface DictService {
 	 * @return
 	 */
 	List<Dict> selectByColumn(String column);
+
+	List<Dict> listPage(Pagination pagination, Dict dict);
 
 }

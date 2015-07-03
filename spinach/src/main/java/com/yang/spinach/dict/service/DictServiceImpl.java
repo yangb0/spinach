@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yang.spinach.dict.dao.DictDao;
+import com.yang.spinach.frame.utils.page.Pagination;
 
 /**
  * 
@@ -38,6 +39,11 @@ public class DictServiceImpl implements DictService {
 	@Override
 	public List<Dict> selectByColumn(String column) {
 		return dictDao.selectByColumn(column);
+	}
+
+	@Override
+	public List<Dict> listPage(Pagination pagination, Dict dict) {
+		return dictDao.listPage(pagination,dict);
 	}
 
 }

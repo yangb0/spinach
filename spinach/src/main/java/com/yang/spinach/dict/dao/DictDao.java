@@ -2,9 +2,11 @@ package com.yang.spinach.dict.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.yang.spinach.dict.entity.Dict;
+import com.yang.spinach.frame.utils.page.Pagination;
 
 /**
  * 
@@ -36,5 +38,8 @@ public interface DictDao {
 	Dict selectDictById(Object id) throws Exception;
 
 	List<Dict> selectByColumn(String column);
+
+	List<Dict> listPage(@Param("pagination") Pagination pagination,
+			@Param("dict") Dict dict);
 
 }

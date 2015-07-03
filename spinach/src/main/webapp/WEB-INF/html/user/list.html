@@ -40,6 +40,7 @@ body {
 				<th>电话</th>
 				<th>邮箱</th>
 				<th>最后登陆时间</th>
+				<th>是否启用</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -51,6 +52,7 @@ body {
 				<td>${(u.mobile)!""}</td>
 				<td class="center">${(u.email)!""}</td>
 				<td>${u.loginTime?string("yyyy-MM-dd HH:MM:ss")}</td>
+				<td>${(u.disabled==0)?string("启用","禁用")}</td>
 				<td>
 				<@shiro.hasPermission name="sys:user:update">
 				<a class="edit" href="${path}/user/add?id=${(u.id)!''}">修改</a>
