@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-07-02 23:49:59
+Date: 2015-07-03 22:44:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,14 +82,15 @@ CREATE TABLE `t_dict` (
   `disabled` int(2) NOT NULL DEFAULT '0' COMMENT '是否启用:0启用,1不启用',
   PRIMARY KEY (`id`),
   KEY `target_column` (`target_column`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
 -- Records of t_dict
 -- ----------------------------
-INSERT INTO `t_dict` VALUES ('1', '普通用户', '0', 'user_type', '用户类型', '0', ' ', '0');
-INSERT INTO `t_dict` VALUES ('2', '会员用户', '1', 'user_type', '用户类型', '0', ' ', '0');
-INSERT INTO `t_dict` VALUES ('3', '管理员用户', '2', 'user_type', '用户类型', '0', '', '0');
+INSERT INTO `t_dict` VALUES ('1', '普通用户', '0', 'user_type', '用户类型1', '1', 's', '0');
+INSERT INTO `t_dict` VALUES ('2', '会员用户', '1', 'user_type', '用户类型', '2', ' ', '0');
+INSERT INTO `t_dict` VALUES ('3', '管理员用户', '2', 'user_type', '用户类型', '3', '', '0');
+INSERT INTO `t_dict` VALUES ('4', 's', '1', 's', 's', '1', 's', '0');
 
 -- ----------------------------
 -- Table structure for t_resources
@@ -107,7 +108,7 @@ CREATE TABLE `t_resources` (
   `disabled` tinyint(10) NOT NULL DEFAULT '0',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 -- ----------------------------
 -- Records of t_resources
@@ -132,8 +133,10 @@ INSERT INTO `t_resources` VALUES ('19', '3', '查看用户角色', '1', null, ''
 INSERT INTO `t_resources` VALUES ('22', '2', '查看角色权限', '1', null, '', 'sys:role:permView', '', '0', '查看角色拥有的权限');
 INSERT INTO `t_resources` VALUES ('23', '11', '定时任务管理', '0', '9', '', 'monitoring:task', 'icon-hamburg-full-time', '0', '定时任务管理，支持集群');
 INSERT INTO `t_resources` VALUES ('24', '1', '菜单管理', '0', '4', '/resources/list', 'sys:perm:manager', 'icon-hamburg-old-versions', '0', '');
-INSERT INTO `t_resources` VALUES ('25', '1', '字典管理', '0', '6', '', 'sys:dictionaries', 'icon-hamburg-address', '0', '数据字典管理');
+INSERT INTO `t_resources` VALUES ('25', '1', '字典管理', '0', '6', '/dict/list', 'sys:dictionaries', 'icon-hamburg-address', '0', '数据字典管理');
 INSERT INTO `t_resources` VALUES ('28', '1', 'a', '0', null, '', '11', '', '1', '');
+INSERT INTO `t_resources` VALUES ('29', '25', '添加数据字典', '1', '2', '', 'sys:dict:add', '', '0', '添加数据字典');
+INSERT INTO `t_resources` VALUES ('30', '25', '数据字典修改', '1', '3', '', 'sys:dict:update', '', '0', '数据字典修改');
 
 -- ----------------------------
 -- Table structure for t_role
