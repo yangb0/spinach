@@ -64,14 +64,14 @@ public class ResourcesController {
 	@RequestMapping("/getById/{id}")
 	public Object getById(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Resources r = resourcesService.selectResourcesById(id);
-			map.put("status", 1);
+			map.put(Const.STATUS, 1);
 			map.put("data", r);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -80,7 +80,7 @@ public class ResourcesController {
 	@ResponseBody
 	public Object save(Resources resources) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Integer i = 0;
 			if (resources.getId() != null && resources.getId() != 0) {
@@ -89,12 +89,12 @@ public class ResourcesController {
 				i = resourcesService.saveResources(resources);
 			}
 			if (i > 0) {
-				map.put("status", 0);
+				map.put(Const.STATUS, 0);
 				map.put("data", "保存成功");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}

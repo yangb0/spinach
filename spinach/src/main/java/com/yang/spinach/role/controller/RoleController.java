@@ -46,14 +46,14 @@ public class RoleController {
 	@RequestMapping("/getById/{id}")
 	public Object getById(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Role a = roleService.selectRoleById(id);
-			map.put("status", 1);
+			map.put(Const.STATUS, 1);
 			map.put("data", a);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -69,7 +69,7 @@ public class RoleController {
 	@ResponseBody
 	public Object save(Role role) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Integer i = 0;
 			if (role.getId() != null && role.getId() != 0) {
@@ -78,12 +78,12 @@ public class RoleController {
 				i = roleService.saveRole(role);
 			}
 			if (i > 0) {
-				map.put("status", 0);
+				map.put(Const.STATUS, 0);
 				map.put("data", "保存成功");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -111,13 +111,13 @@ public class RoleController {
 	@RequestMapping("/savePerm")
 	public String savePerm(Long id, Long[] rid) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			roleService.delPermBYId(id);
 			roleService.bathSavePerm(rid, id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return "redirect:/role/list";
 	}

@@ -35,6 +35,7 @@ public class DictController {
 	public String list(Pagination pagination, Dict dict) {
 		List<Dict> list = dictService.listPage(pagination, dict);
 		WebContext.setAttribute("list", list);
+		WebContext.setAttribute(Const.PAGINATION, pagination);
 		return "/dict/list";
 	}
 
@@ -42,14 +43,14 @@ public class DictController {
 	@RequestMapping("/getById/{id}")
 	public Object getById(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Dict a = dictService.selectDictById(id);
-			map.put("status", 0);
+			map.put(Const.STATUS, 0);
 			map.put("data", a);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -65,7 +66,7 @@ public class DictController {
 	@ResponseBody
 	public Object save(Dict dict) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Integer i = 0;
 			if (dict.getId() != null && dict.getId() != 0) {
@@ -74,12 +75,12 @@ public class DictController {
 				i = dictService.saveDict(dict);
 			}
 			if (i > 0) {
-				map.put("status", 0);
+				map.put(Const.STATUS, 0);
 				map.put("data", "保存成功");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}

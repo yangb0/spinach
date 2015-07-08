@@ -45,14 +45,14 @@ public class AccountController {
 	@ResponseBody
 	public Object get(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			Account a = accountService.selectAccountById(id);
-			map.put("status", 1);
+			map.put(Const.STATUS, 1);
 			map.put("data", a);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -61,7 +61,7 @@ public class AccountController {
 	public String list(Account account, Pagination pagination) {
 		List<Account> list = accountService.listPage(account, pagination);
 		WebContext.setAttribute("list", list);
-		WebContext.setAttribute("pagination", pagination);
+		WebContext.setAttribute(Const.PAGINATION, pagination);
 		return "/user/list";
 	}
 
@@ -80,7 +80,7 @@ public class AccountController {
 	@ResponseBody
 	public Object save(Account account, Long roleId) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			String message = ValidatorUtils.validate(account);
 			Integer i = 0;
@@ -93,15 +93,15 @@ public class AccountController {
 					i = accountService.saveAccount(account);
 				}
 				if (i > 0) {
-					map.put("status", 0);
-					map.put("msg", "保存成功");
+					map.put(Const.STATUS, 0);
+					map.put(Const.MSG, "保存成功");
 				}
 			} else {
-				map.put("msg", message);
+				map.put(Const.MSG, message);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return map;
 	}
@@ -131,13 +131,13 @@ public class AccountController {
 	@RequestMapping("/saveRole")
 	public String saveRole(Long id, Long[] rid) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", -1);
+		map.put(Const.STATUS, -1);
 		try {
 			roleService.delRoleBYId(id);
 			roleService.bathSaveRole(rid, id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("msg", Const.DEFAULT_ERROR);
+			map.put(Const.MSG, Const.DEFAULT_ERROR);
 		}
 		return "redirect:/user/list";
 	}

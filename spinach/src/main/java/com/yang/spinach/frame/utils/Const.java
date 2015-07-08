@@ -15,4 +15,7 @@ public class Const {
 	public static final String DEFAULT_ERROR = "网络错误,请稍后重试!";
 	// 选中
 	public static final String CHECKED = "checked";
+	public static final String STATUS = "status";
+	public static final String PAGINATION = "pagination";
+	public static final String MSG = "msg";
 }
