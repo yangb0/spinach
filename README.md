@@ -48,7 +48,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 * QQ 群: 21596283
 * E-mail：yangbo@live.cn
-* GitHub：
+* GitHub：https://github.com/yangb0/spinach
 * OSChina：<http://git.oschina.net/1231/spinach>
 * 捐赠支持（支付宝）：yangbo@live.cn
 
