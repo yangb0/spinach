@@ -1,6 +1,6 @@
 #签名
 FROM centos:centos7
-MAINTAINER 油焖-菠菜  <yangbo@live.cn>
+MAINTAINER yangbo <yangbo@live.cn>
 
 # 更新源，安装ssh server
 #apt
