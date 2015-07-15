@@ -10,10 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-07-10 23:29:16
+Date: 2015-07-16 00:18:07
 */
-CREATE DATABASE demo;
-use demo;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -160,7 +159,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('scheduler', 'asus1436456205236', '1436456235924', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('scheduler', 'asus1436976161808', '1436976222687', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -262,10 +261,10 @@ CREATE TABLE `t_account` (
 -- ----------------------------
 INSERT INTO `t_account` VALUES ('1', 'demo', 'demo', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', 'demo@demo.com', '2', '2015-05-31 16:30:38', '0');
 INSERT INTO `t_account` VALUES ('2', 'user', 'user1', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '10001@qq.com', '0', '2015-06-04 21:47:49', '1');
-INSERT INTO `t_account` VALUES ('3', 'test', 'test', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '111@qq.com', '0', '2015-05-31 21:14:47', '0');
-INSERT INTO `t_account` VALUES ('5', 'test1', '1111', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '11@qq.com', '0', '2015-05-31 21:19:20', '0');
-INSERT INTO `t_account` VALUES ('6', 'abcd', 'qwer', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000001', 'qq@qq.com', '0', '2015-06-04 21:48:45', '0');
-INSERT INTO `t_account` VALUES ('8', '111111', '111111', 'MD5:e10adc3949ba59abbe56e057f20f883e', '13000000000', '1@1.com', '0', '2015-06-28 00:29:34', '0');
+INSERT INTO `t_account` VALUES ('3', 'test', 'test', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '111@qq.com', '0', '2015-07-16 00:03:26', '0');
+INSERT INTO `t_account` VALUES ('5', 'test1', '1111', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '11@qq.com', '0', '2015-07-16 00:03:30', '0');
+INSERT INTO `t_account` VALUES ('6', 'abcd', 'qwer', 'e10adc3949ba59abbe56e057f20f883e', '13000000001', 'qq@qq.com', '0', '2015-07-16 00:03:33', '0');
+INSERT INTO `t_account` VALUES ('8', '111111', '111111', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '1@1.com', '0', '2015-07-16 00:03:36', '0');
 INSERT INTO `t_account` VALUES ('9', '1231', '1233', 'e10adc3949ba59abbe56e057f20f883e', '13000000000', '1@1.cm', '0', '2015-06-28 00:34:33', '0');
 
 -- ----------------------------
@@ -446,3 +445,24 @@ INSERT INTO `t_role_resources` VALUES ('40', '2', '4');
 INSERT INTO `t_role_resources` VALUES ('41', '2', '1');
 INSERT INTO `t_role_resources` VALUES ('42', '2', '2');
 INSERT INTO `t_role_resources` VALUES ('43', '2', '4');
+
+-- ----------------------------
+-- Table structure for t_schedule_job
+-- ----------------------------
+DROP TABLE IF EXISTS `t_schedule_job`;
+CREATE TABLE `t_schedule_job` (
+  `job_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sched_name` varchar(120) NOT NULL,
+  `job_name` varchar(200) NOT NULL,
+  `job_group` varchar(200) NOT NULL,
+  `bean_class` varchar(200) DEFAULT NULL COMMENT '任务执行时调用哪个类(完整类路径)',
+  `spring_id` varchar(200) DEFAULT NULL COMMENT '任务执行时调用哪个类(spring中注册的别名)',
+  `method_name` varchar(200) DEFAULT NULL COMMENT '任务执行时调用的具体方法',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`job_id`),
+  UNIQUE KEY `sched_name_job_name_job_group` (`sched_name`,`job_name`,`job_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_schedule_job
+-- ----------------------------
