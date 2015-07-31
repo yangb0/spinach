@@ -88,6 +88,11 @@ public class AccountController {
 				if (account.getId() != null && account.getId() != 0) {
 					i = accountService.updateAccountById(account);
 				} else {
+					Account a = accountService.selectByUsername(account.getUsername());
+					if(a!=null){
+						map.put(Const.MSG, "用户名已存在");
+						return map;
+					}
 					account.setPassword(new Md5Hash(account.getPassword())
 							.toString());
 					i = accountService.saveAccount(account);

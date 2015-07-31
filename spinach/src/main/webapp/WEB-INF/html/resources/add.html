@@ -30,6 +30,7 @@ body {
 			<tr>
 				<td width="10%" class="tableleft">上级菜单</td>
 				<td><select class="span6 m-wrap" name="pid">
+					<option value="0">--</option>
 					<#list list as r>
 							<option value="${(r.id)!''}">${(r.name)!""}</option>
 					</#list>
