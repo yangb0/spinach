@@ -91,6 +91,7 @@
 		<constructor-arg>
 			<value>
 				/login=anon
+                /logout=logout
 				/static/** = anon
 				/account/get = anon
 				/login.json=anon
