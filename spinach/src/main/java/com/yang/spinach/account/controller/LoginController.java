@@ -160,7 +160,7 @@ public class LoginController {
 	 * 
 	 * @param request
 	 */
-	@RequestMapping(value = "/logout")
+/*	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject != null) {
@@ -168,7 +168,7 @@ public class LoginController {
 		}
 		 return "/login";
 	}
-
+*/
 	/**
 	 * 生成验证码
 	 * 
