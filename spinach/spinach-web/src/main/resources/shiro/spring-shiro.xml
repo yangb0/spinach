@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+	default-lazy-init="true">
+
+	<description>Shiro Configuration</description>
+	<!-- cache 单机实现 -->
+	<!--<import resource="classpath:shiro/shiro-ehcache.xml" />-->
+	<!-- cache 集群实现 -->
+ 	<import resource="classpath:shiro/shiro-redis.xml" />
+
+	<!-- Realm实现 -->
+	<bean id="shiroAccountRealm" class="com.yang.spinach.common.shiro.ShiroAccountRealm">
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
+		<property name="cachingEnabled" value="false" />
+		<!--<property name="authenticationCachingEnabled" value="true"/> -->
+		<!--<property name="authenticationCacheName" value="authenticationCache"/> -->
+		<!--<property name="authorizationCachingEnabled" value="true"/> -->
+		<!--<property name="authorizationCacheName" value="authorizationCache"/> -->
+	</bean>
+
+	<!-- 基于Form表单的身份验证过滤器 -->
+	<bean id="formAuthenticationFilter"
+		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+		<property name="usernameParam" value="username"/>
+		<property name="passwordParam" value="password" />
+		<property name="rememberMeParam" value="rememberMe" />
+		<property name="loginUrl" value="/login"/>
+	</bean>
+
+	<!-- CAS认证过滤器 -->
+	<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
+		<property name="failureUrl" value="/login" />
+	</bean>
+
+	<!-- 定义Shiro安全管理配置 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shiroAccountRealm" />
+		<property name="sessionManager" ref="sessionManager" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+	<!-- 会话ID生成器 -->
+	<bean id="sessionIdGenerator"
+		class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator" />
+		
+
+	<!-- 指定本系统SESSIONID, 默认为: JSESSIONID 问题: 与SERVLET容器名冲突, 如JETTY, TOMCAT 等默认JSESSIONID, 
+		当跳出SHIRO SERVLET时如ERROR-PAGE容器会为JSESSIONID重新分配值导致登录会话丢失! -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="-1" />
+		<property name="name" value="sid" />
+	</bean>
+	<!-- 自定义会话管理配置 -->
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="sessionDAO" ref="sessionDAO" />
+
+		<!-- 会话超时时间，单位：毫秒 -->
+		<property name="globalSessionTimeout" value="1800000" />
+
+		<!-- 定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话 -->
+		<property name="sessionValidationInterval" value="900000" />
+		<property name="sessionValidationSchedulerEnabled" value="true" />
+
+		<property name="sessionIdCookie" ref="sessionIdCookie" />
+		<property name="sessionIdCookieEnabled" value="true" />
+	</bean>
+
+
+	<!-- 安全认证过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/index" />
+		<property name="unauthorizedUrl" value="/login?unauthorized"/>
+		<property name="filters">
+			<map>
+				<entry key="cas" value-ref="casFilter" />
+				<entry key="authc" value-ref="formAuthenticationFilter" />
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<ref bean="shiroFilterChainDefinitions" />
+		</property>
+	</bean>
+
+	<!-- Shiro权限过滤过滤器定义 -->
+	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				/login=authc
+				/logout=logout
+				/static/** = anon
+				/account/get = anon
+				/login.json=anon
+				/monitoring=anon
+				/** = user
+			</value>
+		</constructor-arg>
+	</bean>
+
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+
+</beans>

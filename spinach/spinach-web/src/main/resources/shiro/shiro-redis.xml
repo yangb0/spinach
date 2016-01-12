@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="false">
+
+	<description>缓存管理 redis session集群实现</description>
+	<!-- redis Start -->
+	<!-- 对象池配置： -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="-1" />
+		<property name="maxIdle" value="200" />
+		<property name="maxWaitMillis" value="3000" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+	</bean>
+	<!-- 工厂实现： -->
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		destroy-method="destroy">
+		<property name="hostName" value="${redis.host}" />
+		<property name="port" value="${redis.port}" />
+		<property name="poolConfig" ref="jedisPoolConfig" />
+	</bean>
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+	</bean>
+	<!-- redis End -->
+
+	<!-- 缓存管理器 -->
+	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" >
+		<constructor-arg ref="redisTemplate"/>
+	</bean>
+
+	<bean id="cacheImpl" class="com.yang.spinach.common.utils.redis.cache.RedisCache">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="86400" />
+	</bean>
+
+	<bean id="cacheManager" class="com.yang.spinach.common.shiro.ShiroRedisCacheManager">
+		<property name="cache" ref="cacheImpl" />
+	</bean>
+	<bean id="sessionDAO" class="com.yang.spinach.common.shiro.ShiroSessionDao">
+		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="expire" value="1800"></property>
+	</bean>
+	
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher" class="com.yang.spinach.common.shiro.RedisLoginMatcher">
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="hashAlgorithmName" value="md5" />
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+	</bean>
+</beans>
