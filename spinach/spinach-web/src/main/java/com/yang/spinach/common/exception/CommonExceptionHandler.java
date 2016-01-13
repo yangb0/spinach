@@ -47,10 +47,7 @@ public class CommonExceptionHandler implements HandlerExceptionResolver {
         Boolean isJsonResult = false;
         if(ha!=null){
             Method method = ha.getMethod();
-            ResponseBody r = method.getAnnotation(ResponseBody.class);
-            if(r!=null){
-                isJsonResult=true;
-            }
+            isJsonResult= method.isAnnotationPresent(ResponseBody.class);
         }
         if(isJsonResult){
             MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
