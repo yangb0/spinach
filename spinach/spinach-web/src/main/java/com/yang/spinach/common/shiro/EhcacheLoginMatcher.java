@@ -1,7 +1,5 @@
 package com.yang.spinach.common.shiro;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -9,6 +7,8 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.crypto.hash.Md5Hash;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EhcacheLoginMatcher extends HashedCredentialsMatcher {
 
@@ -34,13 +34,6 @@ public class EhcacheLoginMatcher extends HashedCredentialsMatcher {
 			// count > 5 throw 5次登陆异常
 			throw new ExcessiveAttemptsException();
 		}
-
-		// boolean matches = super.doCredentialsMatch(token, info); fs myself
-		// immp
-		// System.out.println("TokenCredentials=" + new
-		// Md5Hash(token.getCredentials()).toString());
-		// System.out.println("InfoCredentials=" +
-		// getCredentials(info).toString());
 		String credentials = new Md5Hash(token.getCredentials()).toString();
 		boolean matches = credentials.equals(getCredentials(info).toString());
 
