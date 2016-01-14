@@ -312,19 +312,8 @@
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
 				<version>2.8.0</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.apache.commons</groupId>
-						<artifactId>commons-pool2</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
-			<dependency>
-				<groupId>commons-pool</groupId>
-				<artifactId>commons-pool2</artifactId>
-				<version>2.4.2</version>
-			</dependency>
 
 			<!-- quartz spring 3.1以上才支持quartz 2.2.1 -->
 			<dependency>

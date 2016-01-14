@@ -16,18 +16,22 @@
 		<property name="testOnBorrow" value="true" />
 		<property name="testOnReturn" value="true" />
 	</bean>
-	<!-- 工厂实现： -->
-	<bean id="jedisConnectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		destroy-method="destroy">
-		<property name="hostName" value="${redis.host}" />
-		<property name="port" value="${redis.port}" />
-		<property name="poolConfig" ref="jedisPoolConfig" />
-	</bean>
+
+
+	<!-- redis 连接配置Start  (集群和单机只能有一个实现) -->
+	<!--  sentinel 集群配置Start -->
+	<import resource="classpath:shiro/redis/redis-sentinel.xml"/>
+	<!--  sentinel 集群配置End -->
+
+	<!-- redis 单机配置Start -->
+	<!--<import resource="classpath:shiro/redis/redis.xml"/>-->
+	<!-- redis 单机配置End -->
+	<!-- redis 连接配置End -->
+
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory" />
 	</bean>
-	<!-- redis End -->
+
 
 	<!-- 缓存管理器 -->
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" >

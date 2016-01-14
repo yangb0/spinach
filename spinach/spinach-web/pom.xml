@@ -70,18 +70,8 @@
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.commons</groupId>
-					<artifactId>commons-pool2</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-pool</groupId>
-			<artifactId>commons-pool2</artifactId>
-		</dependency>
 		<!--web -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

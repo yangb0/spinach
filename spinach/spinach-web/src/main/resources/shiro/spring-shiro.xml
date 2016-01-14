@@ -7,9 +7,9 @@
 
 	<description>Shiro Configuration</description>
 	<!-- cache 单机实现 -->
-	<import resource="classpath:shiro/shiro-ehcache.xml" />
+	<!--<import resource="classpath:shiro/shiro-ehcache.xml" />-->
 	<!-- cache 集群实现 -->
- 	<!--<import resource="classpath:shiro/shiro-redis.xml" />-->
+ 	<import resource="classpath:shiro/shiro-redis.xml" />
 
 	<!-- Realm实现 -->
 	<bean id="shiroAccountRealm" class="com.yang.spinach.common.shiro.ShiroAccountRealm">
