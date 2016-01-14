@@ -20,11 +20,11 @@
 
 	<!-- redis 连接配置Start  (集群和单机只能有一个实现) -->
 	<!--  sentinel 集群配置Start -->
-	<import resource="classpath:shiro/redis/redis-sentinel.xml"/>
+	<!--<import resource="classpath:shiro/redis/redis-sentinel.xml"/>-->
 	<!--  sentinel 集群配置End -->
 
 	<!-- redis 单机配置Start -->
-	<!--<import resource="classpath:shiro/redis/redis.xml"/>-->
+	<import resource="classpath:shiro/redis/redis.xml"/>
 	<!-- redis 单机配置End -->
 	<!-- redis 连接配置End -->
 
