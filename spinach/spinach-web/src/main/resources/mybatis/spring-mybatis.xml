@@ -10,7 +10,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations">
             <array>
-                <value>classpath:mybatis/mapper/*.xml</value>
+                <value>classpath:mybatis/mapper/*/*.xml</value>
             </array>
         </property>
         <property name="typeAliasesPackage" value="com.yang.spinach.*.*.entity"/>
