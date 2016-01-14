@@ -8,16 +8,15 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 1、后端
 
-* 核心框架：Spring Framework 4.0.0
+* 核心框架：Spring Framework 4.1.2.RELEASE
 * 安全框架：Apache Shiro 1.2.3
-* 视图框架：Spring MVC 4.0.0
-* 服务端验证：Hibernate Validator 5.1.2
+* 服务端验证：Hibernate Validator 5.1.2.Final
 * 任务调度：quartz 2.2.1
-* 持久层框架：MyBatis 3.1.1
+* 持久层框架：MyBatis 3.2.8(使用[MyBatis通用Mapper](https://github.com/abel533/Mapper)实现简单的sql)
 * 数据库连接池：Alibaba Druid 1.0
 * 缓存框架：Ehcache、Redis
 * 日志管理：SLF4J 1.7、logback
-* 工具类：Apache Commons、Jackson 2.2、Xstream 1.4、POI 3.9
+* 工具类：Apache Commons、Jackson 2.2、Xstream 1.4
 
 2、前端
 参考[H-ui框架](http://www.h-ui.net/)实现
