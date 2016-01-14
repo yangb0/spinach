@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd "
+	default-lazy-init="false">
+
+	<description>缓存管理 redis session集群实现</description>
+	<!-- redis Start -->
+	<!-- 对象池配置： -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="-1" />
+		<property name="maxIdle" value="200" />
+		<property name="maxWaitMillis" value="3000" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+	</bean>
+
+
+	<!-- redis 连接配置Start  (集群和单机只能有一个实现) -->
+	<!--  sentinel 集群配置Start -->
+	<!--<import resource="classpath:shiro/redis/redis-sentinel.xml"/>-->
+	<!--  sentinel 集群配置End -->
+
+	<!-- redis 单机配置Start -->
+	<import resource="classpath:shiro/redis/redis.xml"/>
+	<!-- redis 单机配置End -->
+	<!-- redis 连接配置End -->
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+	</bean>
+
+
+	<!-- 缓存管理器 -->
+	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" >
+		<constructor-arg ref="redisTemplate"/>
+	</bean>
+
+	<bean id="cacheImpl" class="com.yang.spinach.common.utils.redis.cache.RedisCache">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="86400" />
+	</bean>
+
+	<bean id="cacheManager" class="com.yang.spinach.common.shiro.ShiroRedisCacheManager">
+		<property name="cache" ref="cacheImpl" />
+	</bean>
+	<bean id="sessionDAO" class="com.yang.spinach.common.shiro.ShiroSessionDao">
+		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="expire" value="1800"></property>
+	</bean>
+	
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher" class="com.yang.spinach.common.shiro.RedisLoginMatcher">
+		<property name="cache" ref="cacheImpl"></property>
+		<property name="hashAlgorithmName" value="md5" />
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+	</bean>
+</beans>

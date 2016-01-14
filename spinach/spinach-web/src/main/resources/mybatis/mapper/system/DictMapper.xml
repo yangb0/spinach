@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.spinach.bussiness.system.dao.DictDao">
+	<resultMap id="DictMap" type="com.yang.spinach.bussiness.system.entity.Dict">
+		<id column="id" property="id" />
+		<result column="label" property="label" />
+		<result column="value" property="value" />
+		<result column="target_column" property="targetColumn" />
+		<result column="descrption" property="descrption" />
+		<result column="sort" property="sort" />
+		<result column="remark" property="remark" />
+		<result column="disabled" property="disabled" />
+	</resultMap>
+
+	<select id="selectByColumn" resultMap="DictMap" parameterType="java.lang.String">
+		select * from t_dict where target_column=#{column} and disabled =0
+	</select>
+	<select id="listPage" resultMap="DictMap"
+		parameterType="com.yang.spinach.bussiness.system.entity.Dict">
+		select * from t_dict where 1=1
+		<if test="dict.label != null and dict.label !=''">
+				and label=#{ dict.label }
+			</if>
+			<if test="dict.value != null">
+				and value=#{ dict.value }
+			</if>
+			<if test="dict.targetColumn != null and dict.targetColumn !=''">
+				and target_column=#{ dict.targetColumn }
+			</if>
+			<if test="dict.descrption != null and dict.descrption!=''">
+				and descrption=#{ dict.descrption }
+			</if>
+			<if test="dict.sort != null ">
+				and sort=#{ dict.sort }
+			</if>
+			<if test="dict.remark != null and dict.remark !=''">
+				and remark=#{ dict.remark }
+			</if>
+			<if test="dict.disabled != null">
+				and disabled=#{ dict.disabled }
+			</if>
+		
+		</select>
+</mapper>

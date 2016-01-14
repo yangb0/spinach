@@ -8,41 +8,47 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 1、后端
 
-* 核心框架：Spring Framework 4.0.0
+* 核心框架：Spring Framework 4.1.2.RELEASE
 * 安全框架：Apache Shiro 1.2.3
-* 视图框架：Spring MVC 4.0.0
-* 服务端验证：Hibernate Validator 5.1.2
+* 服务端验证：Hibernate Validator 5.1.2.Final
 * 任务调度：quartz 2.2.1
-* 持久层框架：MyBatis 3.1.1
+* 持久层框架：MyBatis 3.2.8(使用[MyBatis通用Mapper](https://github.com/abel533/Mapper)实现简单的sql)
 * 数据库连接池：Alibaba Druid 1.0
 * 缓存框架：Ehcache、Redis
 * 日志管理：SLF4J 1.7、logback
-* 工具类：Apache Commons、Jackson 2.2、Xstream 1.4、POI 3.9
+* 工具类：Apache Commons、Jackson 2.2、Xstream 1.4
 
 2、前端
+参考[H-ui框架](http://www.h-ui.net/)实现
 
-* JS框架：jQuery 1.9。
-* CSS框架：Twitter Bootstrap 2.3.1。
-* 客户端验证：JQuery Validation Plugin 1.11。
-* 日期控件： My97DatePicker
-* 模板引擎: Freemarker
+*  jquery			jQuery类库（v1.9.1）
+*  bootstrapSwitch		开关控件
+*  Hui-iconfont		        阿里图标字体库（H-ui定制 _v1.0.6）
+*  icheck			单选框、复选框控件
+*  laypage			laypage 翻页插件
+*  layer			layer弹出层插件
+*  laytpl			JavaScript模板引擎
+*  My97DatePicker		日期插件
+*  Validform			表单验证插件
 
 
 3、平台
 * JDK版本:支持jdk1.6及以上
 * web容器：支持Tomcat 6、Jboss 7、WebLogic 10、WebSphere 8、jetty等,建议使用jetty运行。
 * 数据库支持：目前仅提供Oracle和mysql数据库的支持。
-* 开发环境：Java EE、Eclipse、Maven、Git
+* 开发工具: eclipse、Intellij idea
 
 ## 开发部署
-1. 下载 [Eclipse IDE for Java EE Developers](http://eclipse.org/downloads/)
-2. 打开eclpse,导入项目
-3. File -> Import -> Git -> Projects from Git -> Clone URI
-4. 然后在URI输入：http://git.oschina.net/1231/spinach
-5. 等待eclipse自动下载jar包
-6. 在数据库中运行  /sql/demo.sql文件创建数据库和表
-7. 修改resource下 resources.properties数据库等配置
-8. 部署中可能还会碰到很多问题，请加入QQ群：21596283
+1. 打开开发工具,checkout项目http://git.oschina.net/1231/spinach
+2. maven编译项目,等待maven下载jar包
+3. 在数据库中运行  /sql/demo.sql文件创建数据库和表
+4. 修改resource下 resources.properties数据库等配置
+
+    1)  如想切换到集群环境可以修改resource下配置文件:/src/main/resources/shiro/spring-shiro.xml
+
+    2)  将shiro的缓存从ehcache改为redis(请先安装好redis环境并修改配置)
+
+5. 部署中可能还会碰到很多问题，请加入QQ群：21596283
 
 ## 交流、反馈
 
