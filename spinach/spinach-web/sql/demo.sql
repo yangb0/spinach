@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- 主机:                           10.0.14.246
+-- 主机:                           10.0.12.246
 -- 服务器版本:                        5.1.73 - Source distribution
 -- 服务器操作系统:                      redhat-linux-gnu
 -- HeidiSQL 版本:                  9.2.0.4947
@@ -348,7 +348,7 @@ INSERT INTO `t_resources` (`id`, `pid`, `name`, `type`, `sort`, `url`, `permissi
 	(7, 3, '添加', 1, 1, '', 'sys:user:add', '', 0, '11,1'),
 	(8, 3, '删除', 1, 1, '', 'sys:user:delete', '', 0, '用户删除,用户删除,用户删除,用户删除'),
 	(10, 11, '数据源监控', 0, 6, '/monitoring', 'monitoring:data', 'icon-hamburg-database', 0, ''),
-	(11, 0, '系统监控', 0, 5, '', 'monitoring:system', '&#xe61a;', 0, ''),
+	(11, 0, '系统监控', 0, 6, '', 'monitoring:system', '&#xe61a;', 0, ''),
 	(12, 3, '修改', 1, NULL, '', 'sys:user:update', '', 0, '用户修改'),
 	(13, 24, '添加', 1, NULL, '', 'sys:perm:add', '', 0, '菜单添加'),
 	(14, 24, '修改', 1, NULL, '', 'sys:perm:update', '', 0, '菜单修改'),
@@ -363,10 +363,10 @@ INSERT INTO `t_resources` (`id`, `pid`, `name`, `type`, `sort`, `url`, `permissi
 	(29, 25, '添加数据字典', 1, 2, '', 'sys:dict:add', '', 0, '添加数据字典'),
 	(30, 25, '数据字典修改', 1, 3, '', 'sys:dict:update', '', 0, '数据字典修改'),
 	(31, 23, '添加定时任务', 1, 1, ' ', 'sys:scheduleJob:add', ' ', 0, '添加定时任务'),
-	(33, 0, '资讯管理', 0, 1, '', 'sys:article', '&#xe616;', 0, ''),
-	(34, 0, '图片管理', 0, 1, '', 'sys:picture', '&#xe613;', 0, ''),
-	(35, 0, '产品管理', 0, 1, '', 'sys:product', '&#xe620;', 0, ''),
-	(36, 0, '评论管理', 0, 1, '', 'sys:feedback', '&#xe622;', 0, ''),
+	(33, 0, '资讯管理', 0, 2, '', 'sys:article', '&#xe616;', 0, ''),
+	(34, 0, '图片管理', 0, 3, '', 'sys:picture', '&#xe613;', 0, ''),
+	(35, 0, '产品管理', 0, 4, '', 'sys:product', '&#xe620;', 0, ''),
+	(36, 0, '评论管理', 0, 5, '', 'sys:feedback', '&#xe622;', 0, ''),
 	(37, 0, 'aa', 0, 1, NULL, '11', NULL, 0, 'a,a');
 /*!40000 ALTER TABLE `t_resources` ENABLE KEYS */;
 
