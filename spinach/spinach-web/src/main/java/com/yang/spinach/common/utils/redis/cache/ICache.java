@@ -156,7 +156,7 @@ public interface ICache {
 	 * @param key
 	 * @param member
 	 */
-	public abstract void zRem(final String key, final String member);
+	public abstract long zRem(final String key, final String member);
 
 	/**
 	 * Pop the specified range of elements in the sorted set stored at key. The
@@ -424,4 +424,6 @@ public interface ICache {
 	 * @param message
 	 */
 	public abstract void publish(final String channel, final String message);
+
+	public Set<String> zRangeByScore(final String key, final double begin, final double end);
 }
