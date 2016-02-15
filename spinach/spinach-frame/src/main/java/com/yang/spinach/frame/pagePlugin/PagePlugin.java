@@ -67,43 +67,45 @@ public class PagePlugin implements Interceptor {
 						parameterinvoke = parameterObjectmap.get(i);
 					}
 				}
-				if (parameterObject == null) {
-					throw new NullPointerException("parameterObject尚未实例化！");
-				} else {
-					Connection connection = (Connection) ivk.getArgs()[0];
-					String sql = boundSql.getSql();
-					String countSql = "select count(0) from (" + sql
-							+ ") as tmp_count"; // 记录统计
-					// System.out.println(countSql);
-					PreparedStatement countStmt = connection
-							.prepareStatement(countSql);
-					BoundSql countBS = new BoundSql(
-							mappedStatement.getConfiguration(), countSql,
-							boundSql.getParameterMappings(), parameterObject);
-					// 处理<foreach>标签 codeing by Just.Lan
-					MetaObject metaObject = mappedStatement.getConfiguration()
-							.newMetaObject(countBS);
-					MetaObject boundSqlObject = mappedStatement
-							.getConfiguration().newMetaObject(boundSql);
-					metaObject.setValue("metaParameters",
-							boundSqlObject.getValue("metaParameters"));
+				if(parameterinvole2!=null){
+					if (parameterObject == null) {
+						throw new NullPointerException("parameterObject尚未实例化！");
+					} else {
+						Connection connection = (Connection) ivk.getArgs()[0];
+						String sql = boundSql.getSql();
+						String countSql = "select count(0) from (" + sql
+								+ ") as tmp_count"; // 记录统计
+						// System.out.println(countSql);
+						PreparedStatement countStmt = connection
+								.prepareStatement(countSql);
+						BoundSql countBS = new BoundSql(
+								mappedStatement.getConfiguration(), countSql,
+								boundSql.getParameterMappings(), parameterObject);
+						// 处理<foreach>标签 codeing by Just.Lan
+						MetaObject metaObject = mappedStatement.getConfiguration()
+								.newMetaObject(countBS);
+						MetaObject boundSqlObject = mappedStatement
+								.getConfiguration().newMetaObject(boundSql);
+						metaObject.setValue("metaParameters",
+								boundSqlObject.getValue("metaParameters"));
 
-					setParameters(countStmt, mappedStatement, countBS,
-							parameterObject);
-					ResultSet rs = countStmt.executeQuery();
-					int count = 0;
-					if (rs.next()) {
-						count = rs.getInt(1);
+						setParameters(countStmt, mappedStatement, countBS,
+								parameterObject);
+						ResultSet rs = countStmt.executeQuery();
+						int count = 0;
+						if (rs.next()) {
+							count = rs.getInt(1);
+						}
+						rs.close();
+						countStmt.close();
+						Pagination pagination = null;
+						if (parameterinvole2 instanceof Pagination) { // 参数就是Page实体
+							pagination = (Pagination) parameterinvole2;
+							pagination.setTotal(count);
+						}
+						String pageSql = generatePageSql(sql, pagination);
+						ReflectHelper.setValueByFieldName(boundSql, "sql", pageSql); // 将分页sql语句反射回BoundSql.
 					}
-					rs.close();
-					countStmt.close();
-					Pagination pagination = null;
-					if (parameterinvole2 instanceof Pagination) { // 参数就是Page实体
-						pagination = (Pagination) parameterinvole2;
-						pagination.setTotal(count);
-					}
-					String pageSql = generatePageSql(sql, pagination);
-					ReflectHelper.setValueByFieldName(boundSql, "sql", pageSql); // 将分页sql语句反射回BoundSql.
 				}
 			}
 		}

@@ -29,5 +29,6 @@ public interface AccountService extends BaseService<Account>{
 	 */
 	Set<String> findPermissions(String username);
 	
-	public Map<String,Object> saveAccount(Account account,Long roleId);
+	public Map<String,Object> saveAccount(Account account);
+
 }

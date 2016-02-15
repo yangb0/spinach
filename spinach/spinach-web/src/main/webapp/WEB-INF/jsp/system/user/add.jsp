@@ -71,19 +71,6 @@
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-3">角色：</label>
-				<div class="formControls col-5">
-					<span class="select-box" style="width: 150px;"> <select
-						class="select" name="roleId" size="1">
-							<option value=""></option>
-							<c:forEach items="${roList }" var="l">
-								<option value="${l.id }" ${l.id eq role.id ? 'selected' : '' }>${l.name }</option>
-							</c:forEach>
-					</select>
-					</span>
-				</div>
-			</div>
-			<div class="row cl">
 				<div class="col-9 col-offset-3">
 					<input class="btn btn-success radius" type="submit"
 						value="&nbsp;&nbsp;提交&nbsp;&nbsp;"> <input
@@ -101,12 +88,11 @@
 				$("#password").remove();
 			}
 			var callback = function(data) {
+				layer.msg(data.msg);
 				if (data.status == "0") {
 					var index = parent.layer.getFrameIndex(window.name);
 					parent.initPage("listForm", "demo", "view", "page");
 					parent.layer.close(index);
-				} else {
-					layer.msg(data.msg);
 				}
 			};
 			$("#fm").validFrom(callback);

@@ -623,4 +623,13 @@ public class RedisCache implements ICache {
         });
     }
 
+    public Long sCard(final String key){
+        return redisTemplate.execute(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                return redisConnection.sCard(redisTemplate.getStringSerializer().serialize(key));
+            }
+        });
+    }
+
 }

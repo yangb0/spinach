@@ -81,9 +81,10 @@
 									   class="statusOperate" href="javascript:;" itemId="{{l.id}}" status="{{l.disabled}}"
 									   title="{{ l.disabled==0 ?'禁用':'启用'}}"><i class="Hui-iconfont {{ l.disabled==0 ?'Hui-iconfont-shenhe-tingyong':'Hui-iconfont-shenhe-tongguo'}}"> </i></a>
 									<a title="编辑" href="javascript:;"
-									   onclick="layer_show('管理员编辑','${path }/user/add?id={{ l.id}}','800','500')"
+									   onclick="layer_show('修改管理员','${path }/user/add?id={{ l.id}}','800','500')"
 									   class="ml-5" style="text-decoration: none"><i
 											class="Hui-iconfont">&#xe6df;</i></a>
+									<a title="修改角色" href="javascript:;" onclick="layer_show('修改角色','${path}/user/updateUserRole?id={{l.id}}&&username={{l.username}}',400,500)" class="ml-5" ><i class="Hui-iconfont">&#xe62b;</i></a>
 								</td>
 							</shiro:hasPermission>
 						</tr>

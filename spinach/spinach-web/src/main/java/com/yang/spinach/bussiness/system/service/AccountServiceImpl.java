@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author <Auto generate>
  * @version 2015-04-15 13:44:42
  * @see com.yang.spinach.bussiness.system.entity.impl.Account
@@ -47,7 +47,7 @@ public class AccountServiceImpl extends BaseServiceImpl<Account>
 	}
 
 	@Override
-	public Map<String, Object> saveAccount(Account account, Long roleId) {
+	public Map<String, Object> saveAccount(Account account) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(Const.STATUS, -1);
 		try {
@@ -72,10 +72,6 @@ public class AccountServiceImpl extends BaseServiceImpl<Account>
 				} else {
 					map.put(Const.MSG, message);
 				}
-			}
-			if(roleId!=null){
-				roleDao.delRoleBYId(account.getId());
-				roleDao.bathSaveRole(roleId, account.getId());
 			}
 			if (i > 0) {
 				map.put(Const.STATUS, 0);

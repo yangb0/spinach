@@ -46,8 +46,12 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public Integer bathSaveRole(Long rid, Long id) {
-		return roleDao.bathSaveRole(rid, id);
+	public Boolean bathSaveRole(Long accountId,Long[] roleIds) {
+		roleDao.delRoleBYId(accountId);
+		if(roleIds!=null){
+			roleDao.bathSaveRole(accountId,roleIds);
+		}
+		return true;
 	}
 
 
@@ -59,4 +63,5 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		}
 		return true;
 	}
+
 }

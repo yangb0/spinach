@@ -46,7 +46,7 @@ public interface RoleService extends BaseService<Role>{
 	 * @param id
 	 * @return
 	 */
-	public Integer bathSaveRole(Long roleId, Long id);
+	public Boolean bathSaveRole(Long accountId,Long[] roleIds);
 
 	/**
 	 * 查找用户拥有角色
@@ -55,5 +55,12 @@ public interface RoleService extends BaseService<Role>{
 	 */
 	public List<Role> findByAccountId(Long id);
 
+	/**
+	 * 修改角色权限
+	 * @param roleId
+	 * @param resourcesIds
+     * @return
+     */
 	public Boolean updatePremission(Long roleId,Long[] resourcesIds);
+
 }

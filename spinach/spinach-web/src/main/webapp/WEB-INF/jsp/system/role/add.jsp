@@ -76,12 +76,11 @@
 	<script type="text/javascript">
 		$(function() {
 			var callback = function(data) {
+				layer.msg(data.msg);
 				if (data.status == "0") {
 					var index = parent.layer.getFrameIndex(window.name);
 					parent.initPage("listForm", "demo", "view", "page");
 					parent.layer.close(index);
-				} else {
-					layer.msg(data.msg);
 				}
 			};
 			$("#fm").validFrom(callback);

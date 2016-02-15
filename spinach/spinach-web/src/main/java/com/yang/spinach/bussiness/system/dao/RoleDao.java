@@ -40,8 +40,9 @@ public interface RoleDao extends MyMapper<Role> {
 
 	public Integer delRoleBYId(Long id);
 
-	public Integer bathSaveRole(@Param("rid") Long rid, @Param("id") Long id);
+	public Integer bathSaveRole( @Param("accountId") Long accountId,@Param("roIds") Long[] roIds);
 
 	public List<Role> findByAccountId(Long id);
+
 
 }

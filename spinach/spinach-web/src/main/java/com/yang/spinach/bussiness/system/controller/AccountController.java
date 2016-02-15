@@ -12,12 +12,12 @@ import com.yang.spinach.frame.pagePlugin.Pagination;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +65,7 @@ public class AccountController {
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list() {
 		return "/system/user/list";
 	}
 
@@ -90,19 +90,11 @@ public class AccountController {
 	@RequestMapping("/add")
 	public String add(Long id) {
 		List<Dict> list = dictService.selectByColumn(Const.DISABLED);
-		Role r = new Role();
-		r.setDisabled(0);
-		List<Role> roleList = roleService.listPage(r, new Pagination());
-		WebContext.setAttribute("roList", roleList);
 		WebContext.setAttribute("list", list);
 		WebContext.setAttribute("id", id);
 		if (id != null) {
 			Account a = accountService.selectByPrimaryKey(id);
 			WebContext.setAttribute("a", a);
-			List<Role> role = roleService.findByAccountId(id);
-			if (!CollectionUtils.isEmpty(role)) {
-				WebContext.setAttribute("role", role.get(0));
-			}
 		}
 		// 管理员用户
 		WebContext.setAttribute("userType", 2);
@@ -111,7 +103,44 @@ public class AccountController {
 
 	@RequestMapping("/save")
 	@ResponseBody
-	public Object save(Account account, Long roleId) {
-		return accountService.saveAccount(account, roleId);
+	public Object save(Account account) {
+		return accountService.saveAccount(account);
+	}
+
+	@RequestMapping("/updateUserRole")
+	public String updateUserRole(Account account){
+		Role r = new Role();
+		r.setDisabled(0);
+		List<Role> roleList = roleService.listPage(r, null);
+		WebContext.setAttribute("roList", roleList);
+		WebContext.setAttribute("account",account);
+		if(account!=null&&account.getId()!=null){
+			List<Role> userRoList = roleService.findByAccountId(account.getId());
+			List<Long> userRoIds = new ArrayList<Long>();
+			for(Role role:userRoList){
+				userRoIds.add(role.getId());
+			}
+			WebContext.setAttribute("userRoIds",userRoIds);
+		}
+		return "/system/user/user_role";
+	}
+
+	@ResponseBody
+	@RequestMapping("saveRole.json")
+	public Object saveRole(Long accountId,Long[] roleIds){
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put(Const.STATUS, -1);
+		boolean f = false;
+		try {
+			f = roleService.bathSaveRole(accountId,roleIds);
+			if(f){
+				map.put(Const.STATUS,0);
+				map.put(Const.MSG,"保存成功!");
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			map.put(Const.MSG,Const.DEFAULT_ERROR);
+		}
+		return map;
 	}
 }

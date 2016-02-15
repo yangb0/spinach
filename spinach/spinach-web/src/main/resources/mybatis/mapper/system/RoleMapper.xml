@@ -1,64 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yang.spinach.bussiness.system.dao.RoleDao">
-	<resultMap id="RoleMap" type="com.yang.spinach.bussiness.system.entity.Role">
+    <resultMap id="RoleMap" type="com.yang.spinach.bussiness.system.entity.Role">
 
-		<id column="id" property="id" />
-		<result column="name" property="name" />
-		<result column="role_code" property="roleCode" />
-		<result column="description" property="description" />
-		<result column="sort" property="sort" />
-		<result column="disabled" property="disabled" />
-	</resultMap>
-	<select id="listPage" resultMap="RoleMap"
-		parameterType="com.yang.spinach.bussiness.system.entity.Role">
-		select * from t_role where 1=1
-		<if test="role.id != null">
-			and id=#{role.id }
-		</if>
-		<if test="role.name != null">
-			and locate(#{role.name },name)
-		</if>
-		<if test="role.roleCode != null">
-			and role_code=#{role.roleCode }
-		</if>
-		<if test="role.description != null">
-			and description=#{role.description }
-		</if>
-		<if test="role.sort != null">
-			and sort=#{role.sort }
-		</if>
-		<if test="role.disabled != null">
-			and disabled=#{role.disabled }
-		</if>
-		order by sort
-	</select>
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="description" property="description"/>
+        <result column="sort" property="sort"/>
+        <result column="disabled" property="disabled"/>
+    </resultMap>
 
-	<delete id="delPermBYId" parameterType="java.lang.Long">
+    <select id="listPage" resultMap="RoleMap"
+            parameterType="com.yang.spinach.bussiness.system.entity.Role">
+        select * from t_role where 1=1
+        <if test="role.id != null">
+            and id=#{role.id }
+        </if>
+        <if test="role.name != null">
+            and locate(#{role.name },name)
+        </if>
+        <if test="role.roleCode != null">
+            and role_code=#{role.roleCode }
+        </if>
+        <if test="role.description != null">
+            and description=#{role.description }
+        </if>
+        <if test="role.sort != null">
+            and sort=#{role.sort }
+        </if>
+        <if test="role.disabled != null">
+            and disabled=#{role.disabled }
+        </if>
+        order by sort
+    </select>
+
+    <delete id="delPermBYId" parameterType="java.lang.Long">
 		delete from
 		t_role_resources where role_id=#{id}
 	</delete>
 
-	<update id="bathSavePerm" parameterType="java.util.Map">
-		insert into t_role_resources (role_id,resources_id)
-		values
-		<foreach collection="rids" item="item" index="index"
-			separator=",">
-			(#{id},#{item})
-		</foreach>
-	</update>
-	<select id="findByAccountId" resultMap="RoleMap" parameterType="java.lang.Long">
+    <update id="bathSavePerm" parameterType="java.util.Map">
+        insert into t_role_resources (role_id,resources_id)
+        values
+        <foreach collection="rids" item="item" index="index"
+                 separator=",">
+            (#{id},#{item})
+        </foreach>
+    </update>
+    <select id="findByAccountId" resultMap="RoleMap" parameterType="java.lang.Long">
 		select r.* from t_role r inner join t_account_role ar
 		on r.id=ar.role_id where r.disabled=0 and ar.user_id=#{id}
 	</select>
 
-	<delete id="delRoleBYId" parameterType="java.lang.Long">
+    <delete id="delRoleBYId" parameterType="java.lang.Long">
 		delete from
 		t_account_role where user_id=#{id}
 	</delete>
-	<update id="bathSaveRole" parameterType="java.util.Map">
-		insert into t_account_role (user_id,role_id)
-		values
-			(#{id},#{rid})
-	</update>
+    <update id="bathSaveRole" parameterType="java.util.Map">
+        insert into t_account_role (user_id,role_id)
+        values
+        <foreach collection="roIds" item="item" index="index"
+                 separator=",">
+            (#{accountId},#{item})
+        </foreach>
+    </update>
+
 </mapper>
