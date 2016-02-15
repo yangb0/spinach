@@ -84,8 +84,10 @@
 									   onclick="layer_show('修改管理员','${path }/user/add?id={{ l.id}}','800','500')"
 									   class="ml-5" style="text-decoration: none"><i
 											class="Hui-iconfont">&#xe6df;</i></a>
-									<a title="修改角色" href="javascript:;" onclick="layer_show('修改角色','${path}/user/updateUserRole?id={{l.id}}&&username={{l.username}}',400,500)" class="ml-5" ><i class="Hui-iconfont">&#xe62b;</i></a>
-								</td>
+								<shiro:hasPermission name="sys:user:roleView">
+								<a title="修改角色" href="javascript:;" onclick="layer_show('修改角色','${path}/user/updateUserRole?id={{l.id}}&&username={{l.username}}',400,500)" class="ml-5" ><i class="Hui-iconfont">&#xe62b;</i></a>
+								</shiro:hasPermission>
+							</td>
 							</shiro:hasPermission>
 						</tr>
 					{{# } }}
