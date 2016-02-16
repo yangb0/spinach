@@ -40,6 +40,8 @@
         <property name="testWhileIdle" value="true"/>
         <property name="testOnBorrow" value="false"/>
         <property name="testOnReturn" value="false"/>
+
+        <!--<property name="connectionInitSqls" value="set names utf8mb4；" />-->
     </bean>
 
     
