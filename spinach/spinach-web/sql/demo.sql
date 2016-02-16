@@ -437,6 +437,7 @@ INSERT INTO `t_role_resources` (`id`, `role_id`, `resources_id`) VALUES
 	(26, 1, 10),
 	(27, 1, 23),
 	(28, 1, 31);
+
 /*!40000 ALTER TABLE `t_role_resources` ENABLE KEYS */;
 
 
