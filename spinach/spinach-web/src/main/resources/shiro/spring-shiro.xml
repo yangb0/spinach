@@ -91,9 +91,11 @@
 	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
 		<constructor-arg>
 			<value>
+				/=anon
 				/login=authc
 				/logout=logout
 				/static/** = anon
+				/**/*.html=anon
 				/getCaptcha=anon
 				/account/get = anon
 				/login.json=anon

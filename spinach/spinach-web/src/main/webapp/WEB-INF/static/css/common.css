@@ -1,0 +1,100 @@
+html, body {
+  height: 100%;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.main-container {
+  width: 1000px;
+  min-height: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+/*----------------------- 导航栏 ------------------------*/
+.main-nav {
+  overflow: hidden;
+  /*background-color: rgba(0, 0, 0, 0.62);*/
+  background-color: #242424;
+}
+
+/*----------------- logo ---------------*/
+.main-nav .logo {
+  display: inline-block;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-left: 25px;
+
+  /*background-color: #f7d543;*/
+
+  /*width: 140px;*/
+
+  /*text-align: center;*/
+}
+
+.main-nav .logo > a {
+  font-size: 23px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+}
+
+.main-nav .logo > a > .heart-image {
+  color: red;
+}
+
+/*----------------- 选项 ----------------*/
+.main-nav .nav-list {
+  float: right;
+  margin-right: 100px;
+}
+
+.main-nav .nav-list > li {
+  display: inline-block;
+  padding: 1.3em 1em 1em 1em;
+}
+
+.main-nav .nav-list > li.active > a {
+  color: #ff3728;
+}
+
+.main-nav .nav-list > li > a {
+  color: #b6b6b6;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+
+/*-------------------------- 通用标题 ---------------------*/
+.common-label {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.common-label .line {
+  height: 2px;
+  background-color: #f1f1f1;
+  position: relative;
+  top: 27px;
+  z-index: -10;
+}
+
+.common-label .common-title {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.common-label .common-title > span {
+  padding: 0 18px;
+  background-color: white;
+}

@@ -116,8 +116,9 @@
     <listener>
         <listener-class>net.bull.javamelody.SessionListener</listener-class>
     </listener>
+
     <welcome-file-list>
-        <welcome-file>/login</welcome-file>
+        <welcome-file>/</welcome-file>
     </welcome-file-list>
 
     <error-page>

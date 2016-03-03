@@ -53,12 +53,8 @@ public class LoginController {
      * @return @
      */
     @RequestMapping(value = "/")
-    public String index(Model model) {
-        Account a = ShiroSessionUtils.getLoginAccount();
-        model.addAttribute("user", a);
-        model.addAttribute("resources",
-                resourcesService.findByAccountId(Long.valueOf(a.getId())));
-        return "/index";
+    public String index() {
+        return "redirect:/index.html";
     }
 
     /**
@@ -68,7 +64,7 @@ public class LoginController {
      * @return @
      */
     @RequestMapping(value = "/unauth")
-    public String unauth(Model model) {
+    public String unauth() {
         if (SecurityUtils.getSubject().isAuthenticated() == false) {
             return "redirect:/login";
         }

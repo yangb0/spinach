@@ -1,0 +1,39 @@
+body {
+  background-size: cover;
+
+  overflow-y: hidden;
+}
+
+/*----------------------------- home -------------------------*/
+#home {
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+/*-------------------- content ------------------*/
+#home .content {
+  padding: 135px 100px;
+  width: 800px;
+
+  text-align: center;
+  color: white;
+
+
+}
+
+
+
+#home .content .title {
+  font-size: 3em;
+  margin-bottom: 30px;
+
+
+}
+
+#home .content .description {
+  font-size: 1.2em;
+
+}
+
