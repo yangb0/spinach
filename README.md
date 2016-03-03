@@ -30,6 +30,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 *  laytpl			JavaScript模板引擎
 *  My97DatePicker		日期插件
 *  Validform			表单验证插件
+*  AngularJS			前端框架(v1.4.5)
 
 
 3、平台
@@ -37,6 +38,12 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * web容器：支持Tomcat 6、Jboss 7、WebLogic 10、WebSphere 8、jetty等,建议使用jetty运行。
 * 数据库支持：目前仅提供Oracle和mysql数据库的支持。
 * 开发工具: eclipse、Intellij idea
+
+4、已实现的功能
+
+后台:权限管理(已实现)
+
+前台:CMS(开发中...)
 
 ## 开发部署
 1. 打开开发工具,checkout项目http://git.oschina.net/1231/spinach
@@ -48,7 +55,8 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
     2)  将shiro的缓存从ehcache改为redis(请先安装好redis环境并修改配置)
 
-5. 部署中可能还会碰到很多问题，请加入QQ群：21596283
+5. 由于项目前台采用AngularJS+html实现,项目发布后不要使用项目名,避免有些资源访问不到.http://localhost:8080访问
+6. 部署中可能还会碰到很多问题，请加入QQ群：21596283
 
 ## 交流、反馈
 
