@@ -27,12 +27,12 @@
 		<property name="usernameParam" value="username"/>
 		<property name="passwordParam" value="password" />
 		<property name="rememberMeParam" value="rememberMe" />
-		<property name="loginUrl" value="/login"/>
+		<property name="loginUrl" value="/admin"/>
 	</bean>
 
 	<!-- CAS认证过滤器 -->
 	<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
-		<property name="failureUrl" value="/login" />
+		<property name="failureUrl" value="/admin" />
 	</bean>
 
 	<!-- 定义Shiro安全管理配置 -->
@@ -73,8 +73,8 @@
 	<!-- 安全认证过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/index" />
+		<property name="loginUrl" value="/admin" />
+		<property name="successUrl" value="/admin/index" />
 		<property name="unauthorizedUrl" value="/login?unauthorized"/>
 		<property name="filters">
 			<map>
@@ -92,7 +92,7 @@
 		<constructor-arg>
 			<value>
 				/=anon
-				/login=authc
+				/admin/login=authc
 				/logout=logout
 				/static/** = anon
 				/**/*.html=anon

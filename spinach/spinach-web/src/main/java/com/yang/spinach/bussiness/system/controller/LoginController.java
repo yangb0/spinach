@@ -41,9 +41,22 @@ public class LoginController {
      * @param model
      * @return @
      */
-    @RequestMapping(value = "/login")
+    @RequestMapping("/admin")
     public String login() {
         return "/login";
+    }
+
+    @RequestMapping("admin/index")
+    public String admin(Model model){
+        try {
+            Account a = ShiroSessionUtils.getLoginAccount();
+            model.addAttribute("user", a);
+            model.addAttribute("resources",
+                    resourcesService.findByAccountId(a.getId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/index";
     }
 
     /**

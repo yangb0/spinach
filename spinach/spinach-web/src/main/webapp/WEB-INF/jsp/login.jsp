@@ -118,7 +118,7 @@
         success: function (result) {
             var result = eval(result);
             if (result && result.status == 0) {
-                window.location.href = "${path}/";
+                window.location.href = "${path}/admin/index";
             } else {
                 $(".Huialert-error").html(result.msg).show();
                 $(".page-container form input[type='submit']").prop("disabled", false);
