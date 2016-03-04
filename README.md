@@ -1,10 +1,10 @@
 #javaWeb开源框架 spinach
-## 简介
+    ## 简介
 spinach是基于多个优秀的开源项目，高度整合封装而成的高效，高性能，强安全性的开源Java EE快速开发平台。
 
 集结最新主流时尚开源技术的面向互联网Web应用的基础开发框架，提供一个J2EE相关主流开源技术架构整合及一些企业应用基础通用功能和组件的设计实现的最佳实践和原型参考。
 
-## 技术选型
+    ## 技术选型
 
 1、后端
 
@@ -18,7 +18,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 * 日志管理：SLF4J 1.7、logback
 * 工具类：Apache Commons、Jackson 2.2、Xstream 1.4
 
-2、前端
+2、 前端
 参考[H-ui框架](http://www.h-ui.net/)实现
 
 *  jquery			jQuery类库（v1.9.1）
@@ -45,7 +45,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 前台:CMS(开发中...)
 
-## 开发部署
+    ## 开发部署
 1. 打开开发工具,checkout项目http://git.oschina.net/1231/spinach
 
 2. maven编译项目,等待maven下载jar包
@@ -66,10 +66,10 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 6.代码生成工具:tools/gencode.zip 
   具体使用方法见解压文件中readme.txt
+ 
+部署中可能还会碰到很多问题，请加入QQ群：21596283
 
-    部署中可能还会碰到很多问题，请加入QQ群：21596283
-
-## 交流、反馈
+    ## 交流、反馈
 
 * QQ 群: 21596283
 * E-mail：yangbo@live.cn
@@ -81,7 +81,7 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 怎么共享我的代码：[手把手教你如何加入到github的开源世界！](http://www.cnblogs.com/wenber/p/3630921.html)
 
-## 版权声明
+    ## 版权声明
 
 本软件使用 [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0) 协议，请严格遵照协议内容：
 
