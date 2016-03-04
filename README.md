@@ -47,8 +47,11 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 
 ## 开发部署
 1. 打开开发工具,checkout项目http://git.oschina.net/1231/spinach
+
 2. maven编译项目,等待maven下载jar包
+
 3. 在数据库中运行  /sql/demo.sql文件创建数据库和表
+
 4. 修改resource下 resources.properties数据库等配置
 
     1)  如想切换到集群环境可以修改resource下配置文件:/src/main/resources/shiro/spring-shiro.xml
@@ -60,7 +63,12 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 	前台地址:http://localhost:8080
 	
 	后台地址: http://localhost:8080/admin
-6. 部署中可能还会碰到很多问题，请加入QQ群：21596283
+
+6.代码生成工具:tools/gencode.zip.
+
+    具体使用方法见解压文件中readme.txt
+
+7. 部署中可能还会碰到很多问题，请加入QQ群：21596283
 
 ## 交流、反馈
 
