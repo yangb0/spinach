@@ -65,7 +65,6 @@ spinach是基于多个优秀的开源项目，高度整合封装而成的高效�
 	后台地址: http://localhost:8080/admin
 
 6.代码生成工具:tools/gencode.zip.
-
     具体使用方法见解压文件中readme.txt
 
 7. 部署中可能还会碰到很多问题，请加入QQ群：21596283
